@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://da41x0dsa6aw0"]
+
+[ext_resource type="Texture2D" uid="uid://dhauti2c6gush" path="res://Continent img/africa1.png" id="1_wssyc"]
+[ext_resource type="Texture2D" uid="uid://up35t2hnnjbf" path="res://Continent img/asia1.png" id="2_lqwkg"]
+[ext_resource type="Texture2D" uid="uid://ciimsoa4hm0la" path="res://Continent img/australia1.png" id="3_jrjiv"]
+[ext_resource type="Texture2D" uid="uid://d3mra36jyy21f" path="res://Continent img/europe1.png" id="4_lj6nh"]
+[ext_resource type="Texture2D" uid="uid://bj2xbbx0g03nk" path="res://Continent img/northamerica1.png" id="5_p0d8x"]
+[ext_resource type="Texture2D" uid="uid://dyuw6hcav671g" path="res://Continent img/southamerica1.png" id="6_qrca7"]
+
+[node name="continents" type="Node2D"]
+
+[node name="Africa" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(495, 493)
+scale = Vector2(4.90625, 4.75)
+texture = ExtResource("1_wssyc")
+
+[node name="Asia" type="Sprite2D" parent="."]
+position = Vector2(880.125, 207.375)
+scale = Vector2(7.65234, 5.17578)
+texture = ExtResource("2_lqwkg")
+
+[node name="Australia" type="Sprite2D" parent="."]
+position = Vector2(943.25, 521.75)
+scale = Vector2(4.27344, 3.69531)
+texture = ExtResource("3_jrjiv")
+
+[node name="Euorpe" type="Sprite2D" parent="."]
+position = Vector2(452.75, 176.25)
+scale = Vector2(5.64844, 4.05469)
+texture = ExtResource("4_lj6nh")
+
+[node name="North America" type="Sprite2D" parent="."]
+position = Vector2(139, 179.5)
+scale = Vector2(4.40625, 5.01563)
+texture = ExtResource("5_p0d8x")
+
+[node name="South America" type="Sprite2D" parent="."]
+position = Vector2(172, 513.5)
+scale = Vector2(4.03125, 4.42188)
+texture = ExtResource("6_qrca7")

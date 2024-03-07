@@ -1,0 +1,25 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1709829846
+continents.gd::GDScript::-1::1709766574::0::1::::<>Node2D<>::
+continents.tscn::PackedScene::7220750039556001021::1709826477::0::1::::<><>::uid://dhauti2c6gush::::res://Continent img/africa1.png<>uid://up35t2hnnjbf::::res://Continent img/asia1.png<>uid://ciimsoa4hm0la::::res://Continent img/australia1.png<>uid://d3mra36jyy21f::::res://Continent img/europe1.png<>uid://bj2xbbx0g03nk::::res://Continent img/northamerica1.png<>uid://dyuw6hcav671g::::res://Continent img/southamerica1.png
+icon.svg::CompressedTexture2D::8390575451370007765::1709662444::1709662460::1::::<><>::
+main.tscn::PackedScene::6673018328068701560::1709826474::0::1::::<><>::res://quit.gd<>res://play.gd<>uid://cdxi3sa6wr40m::::res://risk game background.jpg
+play.gd::GDScript::-1::1709769274::0::1::::<>Button<>::
+players.tscn::PackedScene::1433754064076634422::1709826683::0::1::::<><>::
+quit.gd::GDScript::-1::1709663937::0::1::::<>Button<>::
+risk game background.jpg::CompressedTexture2D::5031425271674045594::1709767307::1709767308::1::::<><>::
+::res://addons/::1709826945
+::res://addons/godot-git-plugin/::1709826945
+git_plugin.gdextension::GDExtension::-1::1709826945::0::1::::<><>::
+plugin.cfg::TextFile::-1::1709826945::0::1::::<><>::
+THIRDPARTY.md::TextFile::-1::1709826945::0::1::::<><>::
+::res://addons/godot-git-plugin/linux/::1709826945
+::res://addons/godot-git-plugin/macos/::1709826945
+::res://addons/godot-git-plugin/win64/::1709829834
+::res://Continent img/::1709765675
+africa1.png::CompressedTexture2D::7651832688514129371::1709765675::1709765675::1::::<><>::
+asia1.png::CompressedTexture2D::1436497228675465891::1709765675::1709765675::1::::<><>::
+australia1.png::CompressedTexture2D::5351628623380809674::1709765675::1709765675::1::::<><>::
+europe1.png::CompressedTexture2D::9150355913854664325::1709765675::1709765675::1::::<><>::
+northamerica1.png::CompressedTexture2D::3075256841621310780::1709765675::1709765675::1::::<><>::
+southamerica1.png::CompressedTexture2D::8886473357707569090::1709765675::1709765675::1::::<><>::

@@ -33,10 +33,10 @@ theme_override_font_sizes/font_size = 40
 text = "PLayer 3"
 
 [node name="p6" type="TextEdit" parent="Startbutton"]
-offset_left = 121.0
-offset_top = -32.0
-offset_right = 290.0
-offset_bottom = 23.0
+offset_left = 87.0
+offset_top = -18.0
+offset_right = 256.0
+offset_bottom = 37.0
 theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("SystemFont_0he2u")
@@ -44,10 +44,10 @@ theme_override_font_sizes/font_size = 40
 text = "Player 6"
 
 [node name="p5" type="TextEdit" parent="Startbutton"]
-offset_left = 127.0
-offset_top = -149.0
-offset_right = 296.0
-offset_bottom = -94.0
+offset_left = 81.0
+offset_top = -146.0
+offset_right = 250.0
+offset_bottom = -91.0
 theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("SystemFont_0he2u")
@@ -55,10 +55,10 @@ theme_override_font_sizes/font_size = 40
 text = "Player 5"
 
 [node name="p4" type="TextEdit" parent="Startbutton"]
-offset_left = 127.0
-offset_top = -289.0
-offset_right = 296.0
-offset_bottom = -234.0
+offset_left = 73.0
+offset_top = -288.0
+offset_right = 242.0
+offset_bottom = -233.0
 theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("SystemFont_0he2u")
@@ -105,10 +105,50 @@ text = "START"
 
 [node name="PlayerTypeDropdown" type="OptionButton" parent="."]
 offset_left = -175.0
-offset_top = -201.0
+offset_top = -207.0
 offset_right = -25.0
-offset_bottom = -144.0
+offset_bottom = -150.0
+script = ExtResource("3_mxapd")
+
+[node name="PlayerTypeDropdown2" type="OptionButton" parent="."]
+offset_left = -175.0
+offset_top = -70.0
+offset_right = -25.0
+offset_bottom = -13.0
+script = ExtResource("3_mxapd")
+
+[node name="PlayerTypeDropdown3" type="OptionButton" parent="."]
+offset_left = 304.0
+offset_top = 60.0
+offset_right = 454.0
+offset_bottom = 117.0
+script = ExtResource("3_mxapd")
+
+[node name="PlayerTypeDropdown4" type="OptionButton" parent="."]
+offset_left = 296.0
+offset_top = -64.0
+offset_right = 446.0
+offset_bottom = -7.0
+script = ExtResource("3_mxapd")
+
+[node name="PlayerTypeDropdown5" type="OptionButton" parent="."]
+offset_left = 291.0
+offset_top = -206.0
+offset_right = 441.0
+offset_bottom = -149.0
+script = ExtResource("3_mxapd")
+
+[node name="PlayerTypeDropdown6" type="OptionButton" parent="."]
+offset_left = -174.0
+offset_top = 62.0
+offset_right = -24.0
+offset_bottom = 119.0
 script = ExtResource("3_mxapd")
 
 [connection signal="pressed" from="Startbutton/Button" to="Startbutton/Button" method="_on_pressed"]
 [connection signal="item_selected" from="PlayerTypeDropdown" to="PlayerTypeDropdown" method="_on_item_selected"]
+[connection signal="item_selected" from="PlayerTypeDropdown2" to="PlayerTypeDropdown2" method="_on_item_selected"]
+[connection signal="item_selected" from="PlayerTypeDropdown3" to="PlayerTypeDropdown3" method="_on_item_selected"]
+[connection signal="item_selected" from="PlayerTypeDropdown4" to="PlayerTypeDropdown4" method="_on_item_selected"]
+[connection signal="item_selected" from="PlayerTypeDropdown5" to="PlayerTypeDropdown5" method="_on_item_selected"]
+[connection signal="item_selected" from="PlayerTypeDropdown6" to="PlayerTypeDropdown6" method="_on_item_selected"]

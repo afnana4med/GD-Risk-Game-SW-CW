@@ -4,6 +4,7 @@ func _ready():
 	# Set the items for the OptionButton
 	add_item("Human")
 	add_item("AI agent")
+	add_item("None")
 
 	# Connect the _on_item_selected function to handle selection
 	

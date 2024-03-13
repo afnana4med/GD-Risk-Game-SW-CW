@@ -118,17 +118,17 @@ offset_bottom = -13.0
 script = ExtResource("3_mxapd")
 
 [node name="PlayerTypeDropdown3" type="OptionButton" parent="."]
-offset_left = 304.0
-offset_top = 60.0
-offset_right = 454.0
-offset_bottom = 117.0
+offset_left = 295.0
+offset_top = 65.0
+offset_right = 445.0
+offset_bottom = 122.0
 script = ExtResource("3_mxapd")
 
 [node name="PlayerTypeDropdown4" type="OptionButton" parent="."]
-offset_left = 296.0
-offset_top = -64.0
-offset_right = 446.0
-offset_bottom = -7.0
+offset_left = 292.0
+offset_top = -68.0
+offset_right = 442.0
+offset_bottom = -11.0
 script = ExtResource("3_mxapd")
 
 [node name="PlayerTypeDropdown5" type="OptionButton" parent="."]

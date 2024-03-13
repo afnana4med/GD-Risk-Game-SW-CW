@@ -1,47 +1,260 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmhr8303uex35"]
+[gd_scene load_steps=42 format=3 uid="uid://cmhr8303uex35"]
 
-[ext_resource type="Texture2D" uid="uid://dhauti2c6gush" path="res://GD-Risk-Game-SW-CW/Continent img/africa1.png" id="1_wssyc"]
-[ext_resource type="Texture2D" uid="uid://up35t2hnnjbf" path="res://GD-Risk-Game-SW-CW/Continent img/asia1.png" id="2_lqwkg"]
-[ext_resource type="Texture2D" uid="uid://ciimsoa4hm0la" path="res://GD-Risk-Game-SW-CW/Continent img/australia1.png" id="3_jrjiv"]
-[ext_resource type="Texture2D" uid="uid://d3mra36jyy21f" path="res://GD-Risk-Game-SW-CW/Continent img/europe1.png" id="4_lj6nh"]
-[ext_resource type="Texture2D" uid="uid://bj2xbbx0g03nk" path="res://GD-Risk-Game-SW-CW/Continent img/northamerica1.png" id="5_p0d8x"]
-[ext_resource type="Texture2D" uid="uid://dyuw6hcav671g" path="res://GD-Risk-Game-SW-CW/Continent img/southamerica1.png" id="6_qrca7"]
-[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/connection.gd" id="7_yhf4c"]
+[ext_resource type="Texture2D" uid="uid://b5bdytp5aa2lb" path="res://GD-Risk-Game-SW-CW/Continent img/Afghanistan.png" id="1_ujg2v"]
+[ext_resource type="Texture2D" uid="uid://csc2uwawarvd8" path="res://GD-Risk-Game-SW-CW/Continent img/Alaska.png" id="2_5ycsg"]
+[ext_resource type="Texture2D" uid="uid://b8bj2iakuxvg3" path="res://GD-Risk-Game-SW-CW/Continent img/NorthwestTerritory.png" id="3_5x806"]
+[ext_resource type="Texture2D" uid="uid://bi6qx4e4sh0f7" path="res://GD-Risk-Game-SW-CW/Continent img/Alberta.png" id="4_5g1st"]
+[ext_resource type="Texture2D" uid="uid://cu4ou667m7tad" path="res://GD-Risk-Game-SW-CW/Continent img/Ontario.png" id="5_4087u"]
+[ext_resource type="Texture2D" uid="uid://cbes2d52rgxst" path="res://GD-Risk-Game-SW-CW/Continent img/WesternUnitedStates.png" id="6_6lcf5"]
+[ext_resource type="Texture2D" uid="uid://blt4leychgnei" path="res://GD-Risk-Game-SW-CW/Continent img/EasternUnitedStates.png" id="7_h7yoq"]
+[ext_resource type="Texture2D" uid="uid://58ar71h40oui" path="res://GD-Risk-Game-SW-CW/Continent img/Greenland.png" id="8_skjjh"]
+[ext_resource type="Texture2D" uid="uid://dgqb8724kvtkm" path="res://GD-Risk-Game-SW-CW/Continent img/Brazil.png" id="9_agf73"]
+[ext_resource type="Texture2D" uid="uid://b77ckr5gkys61" path="res://GD-Risk-Game-SW-CW/Continent img/Venezuela.png" id="10_j0v7i"]
+[ext_resource type="Texture2D" uid="uid://cbnipse6ywydb" path="res://GD-Risk-Game-SW-CW/Continent img/Peru.png" id="11_ci6xr"]
+[ext_resource type="Texture2D" uid="uid://c28k8hxnm7isf" path="res://GD-Risk-Game-SW-CW/Continent img/Argentina.png" id="12_5phox"]
+[ext_resource type="Texture2D" uid="uid://0fexpqpurdkd" path="res://GD-Risk-Game-SW-CW/Continent img/CentralAmerica.png" id="13_fb3do"]
+[ext_resource type="Texture2D" uid="uid://ce4xsn6nqkghu" path="res://GD-Risk-Game-SW-CW/Continent img/WesternAustralia.png" id="14_0rk7e"]
+[ext_resource type="Texture2D" uid="uid://dm8i6acjj5hpy" path="res://GD-Risk-Game-SW-CW/Continent img/EasternAustralia.png" id="15_seu6k"]
+[ext_resource type="Texture2D" uid="uid://dg1fsxguw6jew" path="res://GD-Risk-Game-SW-CW/Continent img/NewGuinea.png" id="16_pfmx8"]
+[ext_resource type="Texture2D" uid="uid://dchygjergiut6" path="res://GD-Risk-Game-SW-CW/Continent img/Indonesia.png" id="17_cn55p"]
+[ext_resource type="Texture2D" uid="uid://b76kel8ja2ito" path="res://GD-Risk-Game-SW-CW/Continent img/Iceland.png" id="17_f4ny4"]
+[ext_resource type="Texture2D" uid="uid://cr6b55qg2si1a" path="res://GD-Risk-Game-SW-CW/Continent img/GreatBritain.png" id="18_0pboh"]
+[ext_resource type="Texture2D" uid="uid://bdsfn3hir3xs7" path="res://GD-Risk-Game-SW-CW/Continent img/WesternEurope.png" id="19_xrt6r"]
+[ext_resource type="Texture2D" uid="uid://16gtsafxduee" path="res://GD-Risk-Game-SW-CW/Continent img/Scandinavia.png" id="20_5xetb"]
+[ext_resource type="Texture2D" uid="uid://c58rtqn7wp2h2" path="res://GD-Risk-Game-SW-CW/Continent img/NorthernEurope.png" id="21_y1w62"]
+[ext_resource type="Texture2D" uid="uid://qkwx552q3pcq" path="res://GD-Risk-Game-SW-CW/Continent img/Ukraine.png" id="22_viykx"]
+[ext_resource type="Texture2D" uid="uid://ivfyrejosnsc" path="res://GD-Risk-Game-SW-CW/Continent img/SouthernEurope.png" id="23_xsfw2"]
+[ext_resource type="Texture2D" uid="uid://bfu4gawj77doq" path="res://GD-Risk-Game-SW-CW/Continent img/MiddleEast.png" id="24_ovdgr"]
+[ext_resource type="Texture2D" uid="uid://2ypo4gywe0bn" path="res://GD-Risk-Game-SW-CW/Continent img/SouthAfrica.png" id="25_7w3w2"]
+[ext_resource type="Texture2D" uid="uid://cl7bcna6cst82" path="res://GD-Risk-Game-SW-CW/Continent img/Congo.png" id="26_xp2qh"]
+[ext_resource type="Texture2D" uid="uid://devx88vh3r0e5" path="res://GD-Risk-Game-SW-CW/Continent img/EastAfrica.png" id="27_x5hjw"]
+[ext_resource type="Texture2D" uid="uid://dmkbphtje1ucv" path="res://GD-Risk-Game-SW-CW/Continent img/Madagascar.png" id="28_qg18c"]
+[ext_resource type="Texture2D" uid="uid://da3nsfp531xmn" path="res://GD-Risk-Game-SW-CW/Continent img/NorthAfrica.png" id="29_raift"]
+[ext_resource type="Texture2D" uid="uid://li3wqfiuh61x" path="res://GD-Risk-Game-SW-CW/Continent img/Ural.png" id="30_ok1j2"]
+[ext_resource type="Texture2D" uid="uid://cuylijdavqowv" path="res://GD-Risk-Game-SW-CW/Continent img/Egypt.png" id="32_eq6h7"]
+[ext_resource type="Texture2D" uid="uid://7fur1kh83dqb" path="res://GD-Risk-Game-SW-CW/Continent img/India.png" id="33_i11n8"]
+[ext_resource type="Texture2D" uid="uid://cp8t11m73jfp" path="res://GD-Risk-Game-SW-CW/Continent img/China.png" id="34_v2vtm"]
+[ext_resource type="Texture2D" uid="uid://c3tmxwrmdjmq7" path="res://GD-Risk-Game-SW-CW/Continent img/Siam.png" id="35_tcloo"]
+[ext_resource type="Texture2D" uid="uid://rnwjrkika5xi" path="res://GD-Risk-Game-SW-CW/Continent img/Siberia.png" id="36_0wj53"]
+[ext_resource type="Texture2D" uid="uid://cnq7wguk6inee" path="res://GD-Risk-Game-SW-CW/Continent img/Yakutsk.png" id="37_teqkb"]
+[ext_resource type="Texture2D" uid="uid://buts8hl8m5v5s" path="res://GD-Risk-Game-SW-CW/Continent img/Irkutsk.png" id="38_3cqqy"]
+[ext_resource type="Texture2D" uid="uid://dvea31ff3ifat" path="res://GD-Risk-Game-SW-CW/Continent img/Mongolia.png" id="39_rvrg3"]
+[ext_resource type="Texture2D" uid="uid://c0om4ecyqvpp0" path="res://GD-Risk-Game-SW-CW/Continent img/Japan.png" id="40_70qy1"]
+[ext_resource type="Texture2D" uid="uid://3o4paeyl8ov0" path="res://GD-Risk-Game-SW-CW/Continent img/Kamchatka.png" id="41_h7nk1"]
 
 [node name="continents" type="Node2D"]
+position = Vector2(0, -380)
 
-[node name="Africa" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(495, 493)
-scale = Vector2(4.90625, 4.75)
-texture = ExtResource("1_wssyc")
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -200)
+zoom = Vector2(0.1, 0.1)
 
-[node name="Asia" type="Sprite2D" parent="."]
-position = Vector2(880.125, 207.375)
-scale = Vector2(7.65234, 5.17578)
-texture = ExtResource("2_lqwkg")
+[node name="Peru" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-3901, 456)
+scale = Vector2(2.84572, 2.76402)
+texture = ExtResource("11_ci6xr")
 
-[node name="Australia" type="Sprite2D" parent="."]
-position = Vector2(943.25, 521.75)
-scale = Vector2(4.27344, 3.69531)
-texture = ExtResource("3_jrjiv")
+[node name="Alsaka" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-4861.06, -2206)
+scale = Vector2(3.49301, 3.44526)
+texture = ExtResource("2_5ycsg")
 
-[node name="Euorpe" type="Sprite2D" parent="."]
-position = Vector2(452.75, 176.25)
-scale = Vector2(5.64844, 4.05469)
-texture = ExtResource("4_lj6nh")
+[node name="NorthwestTerritory" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-3939, -2490)
+scale = Vector2(1.83929, 3.36011)
+texture = ExtResource("3_5x806")
 
-[node name="North America" type="Sprite2D" parent="."]
-position = Vector2(139, 179.5)
-scale = Vector2(4.40625, 5.01563)
-texture = ExtResource("5_p0d8x")
+[node name="Alberta" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-4162, -1910)
+scale = Vector2(1.57713, 2.01875)
+texture = ExtResource("4_5g1st")
 
-[node name="South America" type="Sprite2D" parent="."]
-position = Vector2(172, 513.5)
-scale = Vector2(4.03125, 4.42188)
-texture = ExtResource("6_qrca7")
+[node name="Ontario" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-3817.56, -1822.81)
+scale = Vector2(1.82137, 1.92149)
+texture = ExtResource("5_4087u")
 
-[node name="connection" type="Node2D" parent="."]
-modulate = Color(0.909804, 0.905882, 0.505882, 1)
-position = Vector2(286, 310)
-script = ExtResource("7_yhf4c")
+[node name="WesternAustralia" type="Sprite2D" parent="Camera2D"]
+position = Vector2(3148, 1804)
+scale = Vector2(1.28491, 1.13047)
+texture = ExtResource("14_0rk7e")
+
+[node name="EasternAustralia" type="Sprite2D" parent="Camera2D"]
+position = Vector2(3447, 1784)
+scale = Vector2(1.49765, 1.09434)
+texture = ExtResource("15_seu6k")
+
+[node name="NewGuinea" type="Sprite2D" parent="Camera2D"]
+position = Vector2(3363, 959)
+scale = Vector2(1.57194, 2.3168)
+texture = ExtResource("16_pfmx8")
+
+[node name="Indonesia" type="Sprite2D" parent="Camera2D"]
+position = Vector2(2517, 1179.5)
+scale = Vector2(1.81782, 1.95141)
+texture = ExtResource("17_cn55p")
+
+[node name="WesternUnitedStates" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-4213, -1464)
+scale = Vector2(1.51064, 1.69544)
+texture = ExtResource("6_6lcf5")
+
+[node name="EasternUnitedStates" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-3843, -1374.38)
+scale = Vector2(1.47388, 1.85306)
+texture = ExtResource("7_h7yoq")
+
+[node name="CentralAmerica2" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-4267, -903)
+scale = Vector2(1.90816, 2.55836)
+texture = ExtResource("13_fb3do")
+
+[node name="Venezuela" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-3509.19, -355.188)
+scale = Vector2(3.18395, 4.24247)
+texture = ExtResource("10_j0v7i")
+
+[node name="Brazil" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-3294.37, 526)
+scale = Vector2(2.55945, 2.52581)
+texture = ExtResource("9_agf73")
+
+[node name="MiddleEast" type="Sprite2D" parent="Camera2D"]
+position = Vector2(4113, 1369)
+scale = Vector2(2.62545, 1.87575)
+texture = ExtResource("24_ovdgr")
+
+[node name="SouthAfrica" type="Sprite2D" parent="Camera2D"]
+position = Vector2(168, 1409)
+scale = Vector2(1.71055, 1.88339)
+texture = ExtResource("25_7w3w2")
+
+[node name="Congo" type="Sprite2D" parent="Camera2D"]
+position = Vector2(76.125, 785.063)
+scale = Vector2(1.35705, 1.79452)
+texture = ExtResource("26_xp2qh")
+
+[node name="EastAfrica" type="Sprite2D" parent="Camera2D"]
+position = Vector2(384, 603)
+scale = Vector2(1.70097, 1.20775)
+texture = ExtResource("27_x5hjw")
+
+[node name="Madagascar" type="Sprite2D" parent="Camera2D"]
+position = Vector2(1122, 975)
+scale = Vector2(1.87393, 1.79621)
+texture = ExtResource("28_qg18c")
+
+[node name="NorthAfrica" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-475, 255)
+scale = Vector2(2.0122, 2.30531)
+texture = ExtResource("29_raift")
+
+[node name="Ural" type="Sprite2D" parent="Camera2D"]
+position = Vector2(1840.38, -2149)
+scale = Vector2(4.18963, 2.95313)
+texture = ExtResource("30_ok1j2")
+
+[node name="Afghanistan" type="Sprite2D" parent="Camera2D"]
+position = Vector2(1512.44, -1399.63)
+scale = Vector2(3.03101, 2.45304)
+texture = ExtResource("1_ujg2v")
+
+[node name="Egypt" type="Sprite2D" parent="Camera2D"]
+position = Vector2(213.375, -30)
+scale = Vector2(2.71641, 3.23887)
+texture = ExtResource("32_eq6h7")
+
+[node name="India" type="Sprite2D" parent="Camera2D"]
+position = Vector2(2127, -552)
+scale = Vector2(2.67991, 1.94565)
+texture = ExtResource("33_i11n8")
+
+[node name="MiddleEast2" type="Sprite2D" parent="Camera2D"]
+position = Vector2(918.75, -311)
+scale = Vector2(3.2034, 2.50099)
+texture = ExtResource("24_ovdgr")
+
+[node name="China" type="Sprite2D" parent="Camera2D"]
+position = Vector2(2961.5, -1040)
+scale = Vector2(3.77052, 2.67456)
+texture = ExtResource("34_v2vtm")
+
+[node name="Siam" type="Sprite2D" parent="Camera2D"]
+position = Vector2(2999, -247)
+scale = Vector2(3.42405, 2.16908)
+texture = ExtResource("35_tcloo")
+
+[node name="Siberia" type="Sprite2D" parent="Camera2D"]
+position = Vector2(2234, -2290)
+scale = Vector2(3.10222, 2.73482)
+texture = ExtResource("36_0wj53")
+
+[node name="Yakutsk" type="Sprite2D" parent="Camera2D"]
+position = Vector2(3088.88, -2659)
+scale = Vector2(2.75162, 3.26405)
+texture = ExtResource("37_teqkb")
+
+[node name="Irkutsk" type="Sprite2D" parent="Camera2D"]
+position = Vector2(3053, -1953)
+scale = Vector2(2.44363, 3.2434)
+texture = ExtResource("38_3cqqy")
+
+[node name="Mongolia" type="Sprite2D" parent="Camera2D"]
+position = Vector2(3190, -1348)
+scale = Vector2(2.40337, 2.06275)
+texture = ExtResource("39_rvrg3")
+
+[node name="Japan" type="Sprite2D" parent="Camera2D"]
+position = Vector2(4328, -1472)
+scale = Vector2(1.89302, 2.18851)
+texture = ExtResource("40_70qy1")
+
+[node name="Kamchatka" type="Sprite2D" parent="Camera2D"]
+position = Vector2(3755.06, -2159.69)
+scale = Vector2(2.74101, 2.96035)
+texture = ExtResource("41_h7nk1")
+
+[node name="Argentina" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-3892.56, 1528.13)
+scale = Vector2(2.55891, 2.18398)
+texture = ExtResource("12_5phox")
+
+[node name="Greenland" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-2151, -2404.38)
+scale = Vector2(3.32479, 3.33701)
+texture = ExtResource("8_skjjh")
+
+[node name="Iceland" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-982, -2245)
+scale = Vector2(2.83015, 2.98851)
+texture = ExtResource("17_f4ny4")
+
+[node name="GreatBritain" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-1331, -1365)
+scale = Vector2(2.9247, 3.21523)
+texture = ExtResource("18_0pboh")
+
+[node name="WesternEurope" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-1091, -348)
+scale = Vector2(3.83386, 3.36201)
+texture = ExtResource("19_xrt6r")
+
+[node name="Scandinavia" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-101, -2282)
+scale = Vector2(2.2037, 2.52926)
+texture = ExtResource("20_5xetb")
+
+[node name="NorthernEurope" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-238, -1573)
+scale = Vector2(2.21598, 2.77837)
+texture = ExtResource("21_y1w62")
+
+[node name="Ukraine" type="Sprite2D" parent="Camera2D"]
+position = Vector2(702, -1779)
+scale = Vector2(2.9391, 2.71088)
+texture = ExtResource("22_viykx")
+
+[node name="SouthernEurope" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-175, -911)
+scale = Vector2(2.6685, 2.64072)
+texture = ExtResource("23_xsfw2")

@@ -1,3 +1,8 @@
 res://main.tscn
 res://continents.tscn
 res://players.tscn
+res://connection.gd
+res://Node.cs
+res://continents.gd
+res://play.gd
+res://quit.gd

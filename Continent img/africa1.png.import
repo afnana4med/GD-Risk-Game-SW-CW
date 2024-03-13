@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhauti2c6gush"
-path="res://.godot/imported/africa1.png-ed37c044da77e17100fd9add347e6adc.ctex"
+path="res://.godot/imported/africa1.png-aca346d4337cae678a8ba9b6358fc88b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Continent img/africa1.png"
-dest_files=["res://.godot/imported/africa1.png-ed37c044da77e17100fd9add347e6adc.ctex"]
+source_file="res://GD-Risk-Game-SW-CW/Continent img/africa1.png"
+dest_files=["res://.godot/imported/africa1.png-aca346d4337cae678a8ba9b6358fc88b.ctex"]
 
 [params]
 

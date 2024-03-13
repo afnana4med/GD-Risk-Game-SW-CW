@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2cpvwjvjwxsy"]
+[gd_scene load_steps=7 format=3 uid="uid://t6khpa7bm3uw"]
 
 [ext_resource type="Script" path="res://quit.gd" id="1_itr3y"]
 [ext_resource type="Script" path="res://play.gd" id="1_r4fs4"]
-[ext_resource type="Texture2D" uid="uid://cdxi3sa6wr40m" path="res://risk game background.jpg" id="3_d60ov"]
+[ext_resource type="Texture2D" path="res://risk game background.jpg" id="3_d60ov"]
 
 [sub_resource type="Theme" id="Theme_fel7v"]
 

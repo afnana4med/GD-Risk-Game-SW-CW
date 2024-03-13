@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyuw6hcav671g"
-path="res://.godot/imported/southamerica1.png-5abea0a4a88ab8b2d27e3740b9187de0.ctex"
+path="res://.godot/imported/southamerica1.png-090c0d4acaea8c43aa6a1e18928f0c54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Continent img/southamerica1.png"
-dest_files=["res://.godot/imported/southamerica1.png-5abea0a4a88ab8b2d27e3740b9187de0.ctex"]
+source_file="res://GD-Risk-Game-SW-CW/Continent img/southamerica1.png"
+dest_files=["res://.godot/imported/southamerica1.png-090c0d4acaea8c43aa6a1e18928f0c54.ctex"]
 
 [params]
 

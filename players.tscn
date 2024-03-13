@@ -1,7 +1,114 @@
-[gd_scene format=3 uid="uid://uoryqjme0gn3"]
+[gd_scene load_steps=6 format=3 uid="uid://br7pi5rj3id8m"]
 
-[node name="Players" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://bvj8wqf2ft7nt" path="res://GD-Risk-Game-SW-CW/Player Setup/menu_background.png" id="1_gf1lb"]
+[ext_resource type="Texture2D" uid="uid://c5vo5xsiwj3ex" path="res://GD-Risk-Game-SW-CW/Player Setup/startbutton.png" id="2_xfltt"]
+[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/Player Setup/Button.gd" id="3_2p0ek"]
+[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/Player Setup/PlayerTypeDropdown.gd" id="3_mxapd"]
 
-[node name="MenuBar" type="MenuBar" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[sub_resource type="SystemFont" id="SystemFont_0he2u"]
+
+[node name="Player Setup" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2.50005, -2.00006)
+scale = Vector2(0.769271, 0.6)
+texture = ExtResource("1_gf1lb")
+
+[node name="Startbutton" type="Sprite2D" parent="."]
+position = Vector2(5, 81)
+texture = ExtResource("2_xfltt")
+
+[node name="p3" type="TextEdit" parent="Startbutton"]
+offset_left = -381.0
+offset_top = -24.0
+offset_right = -204.0
+offset_bottom = 42.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "PLayer 3"
+
+[node name="p6" type="TextEdit" parent="Startbutton"]
+offset_left = 121.0
+offset_top = -32.0
+offset_right = 290.0
+offset_bottom = 23.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 6"
+
+[node name="p5" type="TextEdit" parent="Startbutton"]
+offset_left = 127.0
+offset_top = -149.0
+offset_right = 296.0
+offset_bottom = -94.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 5"
+
+[node name="p4" type="TextEdit" parent="Startbutton"]
+offset_left = 127.0
+offset_top = -289.0
+offset_right = 296.0
+offset_bottom = -234.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 4"
+
+[node name="p2" type="TextEdit" parent="Startbutton"]
+offset_left = -376.0
+offset_top = -153.0
+offset_right = -207.0
+offset_bottom = -98.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 2"
+
+[node name="p1" type="TextEdit" parent="Startbutton"]
+offset_left = -379.0
+offset_top = -292.0
+offset_right = -210.0
+offset_bottom = -237.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 1"
+
+[node name="Button" type="Button" parent="Startbutton"]
+offset_left = -83.0
+offset_top = 95.0
+offset_right = 69.0
+offset_bottom = 142.0
+script = ExtResource("3_2p0ek")
+
+[node name="Label" type="Label" parent="Startbutton/Button"]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 167.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "START"
+
+[node name="PlayerTypeDropdown" type="OptionButton" parent="."]
+offset_left = -175.0
+offset_top = -201.0
+offset_right = -25.0
+offset_bottom = -144.0
+script = ExtResource("3_mxapd")
+
+[connection signal="pressed" from="Startbutton/Button" to="Startbutton/Button" method="_on_pressed"]
+[connection signal="item_selected" from="PlayerTypeDropdown" to="PlayerTypeDropdown" method="_on_item_selected"]

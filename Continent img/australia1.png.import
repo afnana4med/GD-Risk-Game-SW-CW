@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciimsoa4hm0la"
-path="res://.godot/imported/australia1.png-1335021779bb60fa9eaf921b461010a6.ctex"
+path="res://.godot/imported/australia1.png-7e40b56de6d0b9bf96a0748b53c4e686.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Continent img/australia1.png"
-dest_files=["res://.godot/imported/australia1.png-1335021779bb60fa9eaf921b461010a6.ctex"]
+source_file="res://GD-Risk-Game-SW-CW/Continent img/australia1.png"
+dest_files=["res://.godot/imported/australia1.png-7e40b56de6d0b9bf96a0748b53c4e686.ctex"]
 
 [params]
 

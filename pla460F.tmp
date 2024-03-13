@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://br7pi5rj3id8m"]
+
+[ext_resource type="Texture2D" uid="uid://bvj8wqf2ft7nt" path="res://GD-Risk-Game-SW-CW/Player Setup/menu_background.png" id="1_gf1lb"]
+[ext_resource type="Texture2D" uid="uid://c5vo5xsiwj3ex" path="res://GD-Risk-Game-SW-CW/Player Setup/startbutton.png" id="2_xfltt"]
+
+[sub_resource type="SystemFont" id="SystemFont_0he2u"]
+
+[node name="Players_Scene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2.50005, -2.00006)
+scale = Vector2(0.769271, 0.6)
+texture = ExtResource("1_gf1lb")
+
+[node name="Control" type="Control" parent="MenuBackground"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionButton" type="OptionButton" parent="MenuBackground/Control"]
+layout_mode = 0
+offset_left = -228.138
+offset_top = -360.0
+offset_right = -60.1381
+offset_bottom = -238.0
+
+[node name="Startbutton" type="Sprite2D" parent="."]
+position = Vector2(5, 81)
+texture = ExtResource("2_xfltt")
+
+[node name="p3" type="TextEdit" parent="Startbutton"]
+offset_left = -381.0
+offset_top = -24.0
+offset_right = -204.0
+offset_bottom = 42.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "PLayer 3"
+
+[node name="p6" type="TextEdit" parent="Startbutton"]
+offset_left = 121.0
+offset_top = -32.0
+offset_right = 290.0
+offset_bottom = 23.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 6"
+
+[node name="p5" type="TextEdit" parent="Startbutton"]
+offset_left = 127.0
+offset_top = -149.0
+offset_right = 296.0
+offset_bottom = -94.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 5"
+
+[node name="p4" type="TextEdit" parent="Startbutton"]
+offset_left = 127.0
+offset_top = -289.0
+offset_right = 296.0
+offset_bottom = -234.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 4"
+
+[node name="p2" type="TextEdit" parent="Startbutton"]
+offset_left = -376.0
+offset_top = -153.0
+offset_right = -207.0
+offset_bottom = -98.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 2"
+
+[node name="Start" type="TextEdit" parent="Startbutton"]
+offset_left = -81.0
+offset_top = 91.0
+offset_right = 88.0
+offset_bottom = 146.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "START"
+
+[node name="p1" type="TextEdit" parent="Startbutton"]
+offset_left = -379.0
+offset_top = -292.0
+offset_right = -210.0
+offset_bottom = -237.0
+theme_override_colors/background_color = Color(0.0313726, 0.643137, 0.643137, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_0he2u")
+theme_override_font_sizes/font_size = 40
+text = "Player 1"

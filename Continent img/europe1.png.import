@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3mra36jyy21f"
-path="res://.godot/imported/europe1.png-53722a4edbd90d88dd7c1698f43705b0.ctex"
+path="res://.godot/imported/europe1.png-ef18124be0c00e4c5d1f4588e5bd76b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Continent img/europe1.png"
-dest_files=["res://.godot/imported/europe1.png-53722a4edbd90d88dd7c1698f43705b0.ctex"]
+source_file="res://GD-Risk-Game-SW-CW/Continent img/europe1.png"
+dest_files=["res://.godot/imported/europe1.png-ef18124be0c00e4c5d1f4588e5bd76b2.ctex"]
 
 [params]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://cmhr8303uex35"]
+[gd_scene load_steps=44 format=3 uid="uid://cmhr8303uex35"]
 
 [ext_resource type="Texture2D" uid="uid://b5bdytp5aa2lb" path="res://GD-Risk-Game-SW-CW/Continent img/Afghanistan.png" id="1_ujg2v"]
 [ext_resource type="Texture2D" uid="uid://csc2uwawarvd8" path="res://GD-Risk-Game-SW-CW/Continent img/Alaska.png" id="2_5ycsg"]
 [ext_resource type="Texture2D" uid="uid://b8bj2iakuxvg3" path="res://GD-Risk-Game-SW-CW/Continent img/NorthwestTerritory.png" id="3_5x806"]
+[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/click.gd" id="3_ig6ai"]
 [ext_resource type="Texture2D" uid="uid://bi6qx4e4sh0f7" path="res://GD-Risk-Game-SW-CW/Continent img/Alberta.png" id="4_5g1st"]
 [ext_resource type="Texture2D" uid="uid://cu4ou667m7tad" path="res://GD-Risk-Game-SW-CW/Continent img/Ontario.png" id="5_4087u"]
 [ext_resource type="Texture2D" uid="uid://cbes2d52rgxst" path="res://GD-Risk-Game-SW-CW/Continent img/WesternUnitedStates.png" id="6_6lcf5"]
@@ -42,6 +43,8 @@
 [ext_resource type="Texture2D" uid="uid://c0om4ecyqvpp0" path="res://GD-Risk-Game-SW-CW/Continent img/Japan.png" id="40_70qy1"]
 [ext_resource type="Texture2D" uid="uid://3o4paeyl8ov0" path="res://GD-Risk-Game-SW-CW/Continent img/Kamchatka.png" id="41_h7nk1"]
 
+[sub_resource type="SystemFont" id="SystemFont_pgeg1"]
+
 [node name="continents" type="Node2D"]
 position = Vector2(0, -380)
 
@@ -59,6 +62,15 @@ position = Vector2(-4861.06, -2206)
 scale = Vector2(3.49301, 3.44526)
 texture = ExtResource("2_5ycsg")
 
+[node name="Button" type="Button" parent="Camera2D/Alsaka"]
+offset_left = -42.0
+offset_top = -86.0
+offset_right = 94.0
+offset_bottom = 39.0
+theme_override_fonts/font = SubResource("SystemFont_pgeg1")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("3_ig6ai")
+
 [node name="NorthwestTerritory" type="Sprite2D" parent="Camera2D"]
 position = Vector2(-3939, -2490)
 scale = Vector2(1.83929, 3.36011)
@@ -75,13 +87,13 @@ scale = Vector2(1.82137, 1.92149)
 texture = ExtResource("5_4087u")
 
 [node name="WesternAustralia" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3148, 1804)
-scale = Vector2(1.28491, 1.13047)
+position = Vector2(3059, 1961)
+scale = Vector2(1.65189, 1.36426)
 texture = ExtResource("14_0rk7e")
 
 [node name="EasternAustralia" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3447, 1784)
-scale = Vector2(1.49765, 1.09434)
+position = Vector2(3445, 1941)
+scale = Vector2(1.88765, 1.36163)
 texture = ExtResource("15_seu6k")
 
 [node name="NewGuinea" type="Sprite2D" parent="Camera2D"]
@@ -104,7 +116,7 @@ position = Vector2(-3843, -1374.38)
 scale = Vector2(1.47388, 1.85306)
 texture = ExtResource("7_h7yoq")
 
-[node name="CentralAmerica2" type="Sprite2D" parent="Camera2D"]
+[node name="CentralAmerica" type="Sprite2D" parent="Camera2D"]
 position = Vector2(-4267, -903)
 scale = Vector2(1.90816, 2.55836)
 texture = ExtResource("13_fb3do")
@@ -118,11 +130,6 @@ texture = ExtResource("10_j0v7i")
 position = Vector2(-3294.37, 526)
 scale = Vector2(2.55945, 2.52581)
 texture = ExtResource("9_agf73")
-
-[node name="MiddleEast" type="Sprite2D" parent="Camera2D"]
-position = Vector2(4113, 1369)
-scale = Vector2(2.62545, 1.87575)
-texture = ExtResource("24_ovdgr")
 
 [node name="SouthAfrica" type="Sprite2D" parent="Camera2D"]
 position = Vector2(168, 1409)
@@ -169,7 +176,7 @@ position = Vector2(2127, -552)
 scale = Vector2(2.67991, 1.94565)
 texture = ExtResource("33_i11n8")
 
-[node name="MiddleEast2" type="Sprite2D" parent="Camera2D"]
+[node name="MiddleEast" type="Sprite2D" parent="Camera2D"]
 position = Vector2(918.75, -311)
 scale = Vector2(3.2034, 2.50099)
 texture = ExtResource("24_ovdgr")
@@ -258,3 +265,5 @@ texture = ExtResource("22_viykx")
 position = Vector2(-175, -911)
 scale = Vector2(2.6685, 2.64072)
 texture = ExtResource("23_xsfw2")
+
+[connection signal="pressed" from="Camera2D/Alsaka/Button" to="Camera2D/Alsaka/Button" method="_on_pressed"]

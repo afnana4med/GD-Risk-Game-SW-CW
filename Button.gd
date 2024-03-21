@@ -26,5 +26,4 @@ func _on_PopupMenu_id_pressed(id):
 		# Add more cases for additional options as needed
 
 
-func _on_popup_menu_id_pressed(id):
-	pass # Replace with function body.
+

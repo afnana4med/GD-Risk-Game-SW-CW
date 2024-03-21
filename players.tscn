@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://br7pi5rj3id8m"]
+[gd_scene load_steps=7 format=3 uid="uid://br7pi5rj3id8m"]
 
 [ext_resource type="Texture2D" uid="uid://bvj8wqf2ft7nt" path="res://GD-Risk-Game-SW-CW/Player Setup/menu_background.png" id="1_gf1lb"]
 [ext_resource type="Texture2D" uid="uid://c5vo5xsiwj3ex" path="res://GD-Risk-Game-SW-CW/Player Setup/startbutton.png" id="2_xfltt"]
 [ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/Player Setup/Button.gd" id="3_2p0ek"]
-[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/Player Setup/PlayerTypeDropdown.gd" id="3_mxapd"]
+[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/DropDownMenu.cs" id="4_2mijy"]
+[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/GameController.cs" id="6_iamgw"]
 
 [sub_resource type="SystemFont" id="SystemFont_0he2u"]
 
@@ -103,52 +104,55 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 text = "START"
 
-[node name="PlayerTypeDropdown" type="OptionButton" parent="."]
-offset_left = -175.0
-offset_top = -207.0
-offset_right = -25.0
-offset_bottom = -150.0
-script = ExtResource("3_mxapd")
+[node name="GameController" type="Node" parent="."]
+script = ExtResource("6_iamgw")
 
-[node name="PlayerTypeDropdown2" type="OptionButton" parent="."]
-offset_left = -175.0
-offset_top = -70.0
-offset_right = -25.0
-offset_bottom = -13.0
-script = ExtResource("3_mxapd")
+[node name="PlayerTypeDropdown1" type="OptionButton" parent="GameController"]
+offset_left = -178.0
+offset_top = -203.0
+offset_right = -28.0
+offset_bottom = -146.0
+script = ExtResource("4_2mijy")
 
-[node name="PlayerTypeDropdown3" type="OptionButton" parent="."]
-offset_left = 295.0
-offset_top = 65.0
-offset_right = 445.0
-offset_bottom = 122.0
-script = ExtResource("3_mxapd")
+[node name="PlayerTypeDropdown2" type="OptionButton" parent="GameController"]
+offset_left = -172.0
+offset_top = -69.0
+offset_right = -22.0
+offset_bottom = -12.0
+script = ExtResource("4_2mijy")
 
-[node name="PlayerTypeDropdown4" type="OptionButton" parent="."]
-offset_left = 292.0
-offset_top = -68.0
-offset_right = 442.0
-offset_bottom = -11.0
-script = ExtResource("3_mxapd")
+[node name="PlayerTypeDropdown3" type="OptionButton" parent="GameController"]
+offset_left = -170.0
+offset_top = 63.0
+offset_right = -20.0
+offset_bottom = 120.0
+script = ExtResource("4_2mijy")
 
-[node name="PlayerTypeDropdown5" type="OptionButton" parent="."]
-offset_left = 291.0
-offset_top = -206.0
-offset_right = 441.0
-offset_bottom = -149.0
-script = ExtResource("3_mxapd")
+[node name="PlayerTypeDropdown4" type="OptionButton" parent="GameController"]
+offset_left = 286.0
+offset_top = -205.0
+offset_right = 436.0
+offset_bottom = -148.0
+script = ExtResource("4_2mijy")
 
-[node name="PlayerTypeDropdown6" type="OptionButton" parent="."]
-offset_left = -174.0
-offset_top = 62.0
-offset_right = -24.0
-offset_bottom = 119.0
-script = ExtResource("3_mxapd")
+[node name="PlayerTypeDropdown5" type="OptionButton" parent="GameController"]
+offset_left = 280.0
+offset_top = -59.0
+offset_right = 430.0
+offset_bottom = -2.0
+script = ExtResource("4_2mijy")
+
+[node name="PlayerTypeDropdown6" type="OptionButton" parent="GameController"]
+offset_left = 308.0
+offset_top = 67.0
+offset_right = 458.0
+offset_bottom = 124.0
+script = ExtResource("4_2mijy")
 
 [connection signal="pressed" from="Startbutton/Button" to="Startbutton/Button" method="_on_pressed"]
-[connection signal="item_selected" from="PlayerTypeDropdown" to="PlayerTypeDropdown" method="_on_item_selected"]
-[connection signal="item_selected" from="PlayerTypeDropdown2" to="PlayerTypeDropdown2" method="_on_item_selected"]
-[connection signal="item_selected" from="PlayerTypeDropdown3" to="PlayerTypeDropdown3" method="_on_item_selected"]
-[connection signal="item_selected" from="PlayerTypeDropdown4" to="PlayerTypeDropdown4" method="_on_item_selected"]
-[connection signal="item_selected" from="PlayerTypeDropdown5" to="PlayerTypeDropdown5" method="_on_item_selected"]
-[connection signal="item_selected" from="PlayerTypeDropdown6" to="PlayerTypeDropdown6" method="_on_item_selected"]
+[connection signal="item_selected" from="GameController/PlayerTypeDropdown1" to="GameController/PlayerTypeDropdown1" method="_on_item_selected"]
+[connection signal="item_selected" from="GameController/PlayerTypeDropdown2" to="GameController/PlayerTypeDropdown2" method="_on_item_selected"]
+[connection signal="item_selected" from="GameController/PlayerTypeDropdown3" to="GameController/PlayerTypeDropdown3" method="_on_item_selected"]
+[connection signal="item_selected" from="GameController/PlayerTypeDropdown4" to="GameController/PlayerTypeDropdown4" method="_on_item_selected"]
+[connection signal="item_selected" from="GameController/PlayerTypeDropdown5" to="GameController/PlayerTypeDropdown5" method="_on_item_selected"]
+[connection signal="item_selected" from="GameController/PlayerTypeDropdown6" to="GameController/PlayerTypeDropdown6" method="_on_item_selected"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://cmhr8303uex35"]
+[gd_scene load_steps=43 format=3 uid="uid://cmhr8303uex35"]
 
 [ext_resource type="Texture2D" uid="uid://b5bdytp5aa2lb" path="res://GD-Risk-Game-SW-CW/Continent img/Afghanistan.png" id="1_ujg2v"]
 [ext_resource type="Texture2D" uid="uid://csc2uwawarvd8" path="res://GD-Risk-Game-SW-CW/Continent img/Alaska.png" id="2_5ycsg"]
 [ext_resource type="Texture2D" uid="uid://b8bj2iakuxvg3" path="res://GD-Risk-Game-SW-CW/Continent img/NorthwestTerritory.png" id="3_5x806"]
-[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/click.gd" id="3_ig6ai"]
 [ext_resource type="Texture2D" uid="uid://bi6qx4e4sh0f7" path="res://GD-Risk-Game-SW-CW/Continent img/Alberta.png" id="4_5g1st"]
 [ext_resource type="Texture2D" uid="uid://cu4ou667m7tad" path="res://GD-Risk-Game-SW-CW/Continent img/Ontario.png" id="5_4087u"]
 [ext_resource type="Texture2D" uid="uid://cbes2d52rgxst" path="res://GD-Risk-Game-SW-CW/Continent img/WesternUnitedStates.png" id="6_6lcf5"]
@@ -37,13 +36,12 @@
 [ext_resource type="Texture2D" uid="uid://cp8t11m73jfp" path="res://GD-Risk-Game-SW-CW/Continent img/China.png" id="34_v2vtm"]
 [ext_resource type="Texture2D" uid="uid://c3tmxwrmdjmq7" path="res://GD-Risk-Game-SW-CW/Continent img/Siam.png" id="35_tcloo"]
 [ext_resource type="Texture2D" uid="uid://rnwjrkika5xi" path="res://GD-Risk-Game-SW-CW/Continent img/Siberia.png" id="36_0wj53"]
+[ext_resource type="Texture2D" uid="uid://e4bsj5h8uin8" path="res://GD-Risk-Game-SW-CW/Continent img/Quebec.png" id="37_dnjdi"]
 [ext_resource type="Texture2D" uid="uid://cnq7wguk6inee" path="res://GD-Risk-Game-SW-CW/Continent img/Yakutsk.png" id="37_teqkb"]
 [ext_resource type="Texture2D" uid="uid://buts8hl8m5v5s" path="res://GD-Risk-Game-SW-CW/Continent img/Irkutsk.png" id="38_3cqqy"]
 [ext_resource type="Texture2D" uid="uid://dvea31ff3ifat" path="res://GD-Risk-Game-SW-CW/Continent img/Mongolia.png" id="39_rvrg3"]
 [ext_resource type="Texture2D" uid="uid://c0om4ecyqvpp0" path="res://GD-Risk-Game-SW-CW/Continent img/Japan.png" id="40_70qy1"]
 [ext_resource type="Texture2D" uid="uid://3o4paeyl8ov0" path="res://GD-Risk-Game-SW-CW/Continent img/Kamchatka.png" id="41_h7nk1"]
-
-[sub_resource type="SystemFont" id="SystemFont_pgeg1"]
 
 [node name="continents" type="Node2D"]
 position = Vector2(0, -380)
@@ -52,218 +50,343 @@ position = Vector2(0, -380)
 position = Vector2(0, -200)
 zoom = Vector2(0.1, 0.1)
 
-[node name="Peru" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-3901, 456)
-scale = Vector2(2.84572, 2.76402)
-texture = ExtResource("11_ci6xr")
+[node name="ContientController" type="Node" parent="Camera2D"]
 
-[node name="Alsaka" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-4861.06, -2206)
-scale = Vector2(3.49301, 3.44526)
-texture = ExtResource("2_5ycsg")
+[node name="Madagascar" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 1200.0
+offset_top = 125.0
+offset_right = 1655.0
+offset_bottom = 769.0
+texture_normal = ExtResource("28_qg18c")
+stretch_mode = 0
 
-[node name="Button" type="Button" parent="Camera2D/Alsaka"]
-offset_left = -42.0
-offset_top = -86.0
-offset_right = 94.0
-offset_bottom = 39.0
-theme_override_fonts/font = SubResource("SystemFont_pgeg1")
-theme_override_font_sizes/font_size = 30
-script = ExtResource("3_ig6ai")
+[node name="Ural" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 1262.0
+offset_top = -3550.0
+offset_right = 2341.0
+offset_bottom = -2275.0
+texture_normal = ExtResource("30_ok1j2")
+stretch_mode = 0
 
-[node name="NorthwestTerritory" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-3939, -2490)
-scale = Vector2(1.83929, 3.36011)
-texture = ExtResource("3_5x806")
+[node name="Afghanistan" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 895.0
+offset_top = -2696.0
+offset_right = 2122.0
+offset_bottom = -1647.0
+texture_normal = ExtResource("1_ujg2v")
+stretch_mode = 0
 
-[node name="Alberta" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-4162, -1910)
-scale = Vector2(1.57713, 2.01875)
-texture = ExtResource("4_5g1st")
+[node name="Siberia" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 1602.0
+offset_top = -3719.0
+offset_right = 2808.0
+offset_bottom = -2111.0
+texture_normal = ExtResource("36_0wj53")
+stretch_mode = 0
 
-[node name="Ontario" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-3817.56, -1822.81)
-scale = Vector2(1.82137, 1.92149)
-texture = ExtResource("5_4087u")
+[node name="Yakutsk" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 2574.0
+offset_top = -3709.0
+offset_right = 3556.0
+offset_bottom = -2908.0
+texture_normal = ExtResource("37_teqkb")
+stretch_mode = 0
 
-[node name="WesternAustralia" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3059, 1961)
-scale = Vector2(1.65189, 1.36426)
-texture = ExtResource("14_0rk7e")
+[node name="Kamchatka" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 3022.0
+offset_top = -3613.0
+offset_right = 4795.0
+offset_bottom = -2071.0
+texture_normal = ExtResource("41_h7nk1")
+stretch_mode = 0
 
-[node name="EasternAustralia" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3445, 1941)
-scale = Vector2(1.88765, 1.36163)
-texture = ExtResource("15_seu6k")
+[node name="Irkutsk" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 2446.0
+offset_top = -3047.0
+offset_right = 3571.0
+offset_bottom = -2280.0
+texture_normal = ExtResource("38_3cqqy")
+stretch_mode = 0
 
-[node name="NewGuinea" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3363, 959)
-scale = Vector2(1.57194, 2.3168)
-texture = ExtResource("16_pfmx8")
+[node name="China" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 1848.0
+offset_top = -2481.0
+offset_right = 3534.0
+offset_bottom = -1001.0
+texture_normal = ExtResource("34_v2vtm")
+stretch_mode = 0
 
-[node name="Indonesia" type="Sprite2D" parent="Camera2D"]
-position = Vector2(2517, 1179.5)
-scale = Vector2(1.81782, 1.95141)
-texture = ExtResource("17_cn55p")
+[node name="Mongolia" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 2564.0
+offset_top = -2354.0
+offset_right = 3873.0
+offset_bottom = -1861.0
+texture_normal = ExtResource("39_rvrg3")
+stretch_mode = 0
 
-[node name="WesternUnitedStates" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-4213, -1464)
-scale = Vector2(1.51064, 1.69544)
-texture = ExtResource("6_6lcf5")
+[node name="Japan" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 4133.0
+offset_top = -2267.0
+offset_right = 4579.0
+offset_bottom = -1395.0
+texture_normal = ExtResource("40_70qy1")
+stretch_mode = 0
 
-[node name="EasternUnitedStates" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-3843, -1374.38)
-scale = Vector2(1.47388, 1.85306)
-texture = ExtResource("7_h7yoq")
+[node name="Siam" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 2531.0
+offset_top = -1423.0
+offset_right = 3296.0
+offset_bottom = -582.0
+texture_normal = ExtResource("35_tcloo")
+stretch_mode = 0
 
-[node name="CentralAmerica" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-4267, -903)
-scale = Vector2(1.90816, 2.55836)
-texture = ExtResource("13_fb3do")
+[node name="India" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 1324.0
+offset_top = -1818.0
+offset_right = 2788.0
+offset_bottom = -551.0
+texture_normal = ExtResource("33_i11n8")
+stretch_mode = 0
 
-[node name="Venezuela" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-3509.19, -355.188)
-scale = Vector2(3.18395, 4.24247)
-texture = ExtResource("10_j0v7i")
+[node name="Indonesia" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 2680.0
+offset_top = -238.0
+offset_right = 3601.0
+offset_bottom = 495.0
+texture_normal = ExtResource("17_cn55p")
+stretch_mode = 0
 
-[node name="Brazil" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-3294.37, 526)
-scale = Vector2(2.55945, 2.52581)
-texture = ExtResource("9_agf73")
+[node name="NewGuinea" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 3620.0
+offset_top = -495.0
+offset_right = 4323.0
+offset_bottom = 51.0
+texture_normal = ExtResource("16_pfmx8")
+stretch_mode = 0
 
-[node name="SouthAfrica" type="Sprite2D" parent="Camera2D"]
-position = Vector2(168, 1409)
-scale = Vector2(1.71055, 1.88339)
-texture = ExtResource("25_7w3w2")
+[node name="EasternAustralia" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 3717.0
+offset_top = 263.0
+offset_right = 4590.0
+offset_bottom = 1177.0
+texture_normal = ExtResource("15_seu6k")
+stretch_mode = 0
 
-[node name="Congo" type="Sprite2D" parent="Camera2D"]
-position = Vector2(76.125, 785.063)
-scale = Vector2(1.35705, 1.79452)
-texture = ExtResource("26_xp2qh")
+[node name="WesternAustralia" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 3343.0
+offset_top = 296.0
+offset_right = 4204.0
+offset_bottom = 1169.0
+texture_normal = ExtResource("14_0rk7e")
+stretch_mode = 0
 
-[node name="EastAfrica" type="Sprite2D" parent="Camera2D"]
-position = Vector2(384, 603)
-scale = Vector2(1.70097, 1.20775)
-texture = ExtResource("27_x5hjw")
+[node name="Alaska" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -5366.0
+offset_top = -3198.0
+offset_right = -4339.0
+offset_bottom = -2366.0
+texture_normal = ExtResource("2_5ycsg")
+stretch_mode = 0
 
-[node name="Madagascar" type="Sprite2D" parent="Camera2D"]
-position = Vector2(1122, 975)
-scale = Vector2(1.87393, 1.79621)
-texture = ExtResource("28_qg18c")
+[node name="NorthWestTerritory" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -4469.0
+offset_top = -3430.0
+offset_right = -3347.0
+offset_bottom = -2686.0
+texture_normal = ExtResource("3_5x806")
+stretch_mode = 0
 
-[node name="NorthAfrica" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-475, 255)
-scale = Vector2(2.0122, 2.30531)
-texture = ExtResource("29_raift")
+[node name="Alberta" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -4424.0
+offset_top = -2696.0
+offset_right = -3879.0
+offset_bottom = -2281.0
+texture_normal = ExtResource("4_5g1st")
+stretch_mode = 0
 
-[node name="Ural" type="Sprite2D" parent="Camera2D"]
-position = Vector2(1840.38, -2149)
-scale = Vector2(4.18963, 2.95313)
-texture = ExtResource("30_ok1j2")
+[node name="Ontario" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -3983.0
+offset_top = -2707.0
+offset_right = -3459.0
+offset_bottom = -2088.0
+texture_normal = ExtResource("5_4087u")
+stretch_mode = 0
 
-[node name="Afghanistan" type="Sprite2D" parent="Camera2D"]
-position = Vector2(1512.44, -1399.63)
-scale = Vector2(3.03101, 2.45304)
-texture = ExtResource("1_ujg2v")
+[node name="WesternUnitedStates" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -4492.0
+offset_top = -2289.0
+offset_right = -3890.0
+offset_bottom = -1812.0
+texture_normal = ExtResource("6_6lcf5")
+stretch_mode = 0
 
-[node name="Egypt" type="Sprite2D" parent="Camera2D"]
-position = Vector2(213.375, -30)
-scale = Vector2(2.71641, 3.23887)
-texture = ExtResource("32_eq6h7")
+[node name="EasternUnitedStates" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -4178.0
+offset_top = -2266.0
+offset_right = -3351.0
+offset_bottom = -1779.0
+texture_normal = ExtResource("7_h7yoq")
+stretch_mode = 0
 
-[node name="India" type="Sprite2D" parent="Camera2D"]
-position = Vector2(2127, -552)
-scale = Vector2(2.67991, 1.94565)
-texture = ExtResource("33_i11n8")
+[node name="Quebec" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -3553.0
+offset_top = -2696.0
+offset_right = -2860.0
+offset_bottom = -2136.0
+texture_normal = ExtResource("37_dnjdi")
+stretch_mode = 0
 
-[node name="MiddleEast" type="Sprite2D" parent="Camera2D"]
-position = Vector2(918.75, -311)
-scale = Vector2(3.2034, 2.50099)
-texture = ExtResource("24_ovdgr")
+[node name="CentralAmerica" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -4521.0
+offset_top = -1938.0
+offset_right = -3657.0
+offset_bottom = -1003.0
+texture_normal = ExtResource("13_fb3do")
+stretch_mode = 0
 
-[node name="China" type="Sprite2D" parent="Camera2D"]
-position = Vector2(2961.5, -1040)
-scale = Vector2(3.77052, 2.67456)
-texture = ExtResource("34_v2vtm")
+[node name="Venezulea" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -4064.0
+offset_top = -1213.0
+offset_right = -3024.0
+offset_bottom = -399.0
+texture_normal = ExtResource("10_j0v7i")
+stretch_mode = 0
 
-[node name="Siam" type="Sprite2D" parent="Camera2D"]
-position = Vector2(2999, -247)
-scale = Vector2(3.42405, 2.16908)
-texture = ExtResource("35_tcloo")
+[node name="Peru" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -4157.0
+offset_top = -580.0
+offset_right = -3356.0
+offset_bottom = 373.0
+texture_normal = ExtResource("11_ci6xr")
+stretch_mode = 0
 
-[node name="Siberia" type="Sprite2D" parent="Camera2D"]
-position = Vector2(2234, -2290)
-scale = Vector2(3.10222, 2.73482)
-texture = ExtResource("36_0wj53")
+[node name="Argentina" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -4063.0
+offset_top = 133.0
+offset_right = -3278.0
+offset_bottom = 1452.0
+texture_normal = ExtResource("12_5phox")
+stretch_mode = 0
 
-[node name="Yakutsk" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3088.88, -2659)
-scale = Vector2(2.75162, 3.26405)
-texture = ExtResource("37_teqkb")
+[node name="Brazil" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -3982.0
+offset_top = -754.0
+offset_right = -2527.0
+offset_bottom = 659.0
+texture_normal = ExtResource("9_agf73")
+stretch_mode = 0
 
-[node name="Irkutsk" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3053, -1953)
-scale = Vector2(2.44363, 3.2434)
-texture = ExtResource("38_3cqqy")
+[node name="Greenland" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -2771.0
+offset_top = -3553.0
+offset_right = -1644.0
+offset_bottom = -2576.0
+texture_normal = ExtResource("8_skjjh")
+stretch_mode = 0
 
-[node name="Mongolia" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3190, -1348)
-scale = Vector2(2.40337, 2.06275)
-texture = ExtResource("39_rvrg3")
+[node name="Iceland" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -1197.0
+offset_top = -3149.0
+offset_right = -666.0
+offset_bottom = -2695.0
+texture_normal = ExtResource("17_f4ny4")
+stretch_mode = 0
 
-[node name="Japan" type="Sprite2D" parent="Camera2D"]
-position = Vector2(4328, -1472)
-scale = Vector2(1.89302, 2.18851)
-texture = ExtResource("40_70qy1")
+[node name="GreatBritian" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -1279.0
+offset_top = -2518.0
+offset_right = -678.0
+offset_bottom = -1880.0
+texture_normal = ExtResource("18_0pboh")
+stretch_mode = 0
 
-[node name="Kamchatka" type="Sprite2D" parent="Camera2D"]
-position = Vector2(3755.06, -2159.69)
-scale = Vector2(2.74101, 2.96035)
-texture = ExtResource("41_h7nk1")
+[node name="Scandinavia" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -568.0
+offset_top = -3375.0
+offset_right = 480.0
+offset_bottom = -2713.0
+texture_normal = ExtResource("20_5xetb")
+stretch_mode = 0
 
-[node name="Argentina" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-3892.56, 1528.13)
-scale = Vector2(2.55891, 2.18398)
-texture = ExtResource("12_5phox")
+[node name="NorthernEurope" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -480.0
+offset_top = -2474.0
+offset_right = 186.0
+offset_bottom = -1842.0
+texture_normal = ExtResource("21_y1w62")
+stretch_mode = 0
 
-[node name="Greenland" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-2151, -2404.38)
-scale = Vector2(3.32479, 3.33701)
-texture = ExtResource("8_skjjh")
+[node name="WesternEurope" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -1050.0
+offset_top = -1979.0
+offset_right = -276.0
+offset_bottom = -1244.0
+texture_normal = ExtResource("19_xrt6r")
+stretch_mode = 0
 
-[node name="Iceland" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-982, -2245)
-scale = Vector2(2.83015, 2.98851)
-texture = ExtResource("17_f4ny4")
+[node name="SouthernEurope" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -352.0
+offset_top = -1957.0
+offset_right = 182.0
+offset_bottom = -1448.0
+texture_normal = ExtResource("23_xsfw2")
+stretch_mode = 0
 
-[node name="GreatBritain" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-1331, -1365)
-scale = Vector2(2.9247, 3.21523)
-texture = ExtResource("18_0pboh")
+[node name="Ukraine" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 200.0
+offset_top = -3391.0
+offset_right = 1506.0
+offset_bottom = -1890.0
+texture_normal = ExtResource("22_viykx")
+stretch_mode = 0
 
-[node name="WesternEurope" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-1091, -348)
-scale = Vector2(3.83386, 3.36201)
-texture = ExtResource("19_xrt6r")
+[node name="MiddleEast" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 95.0
+offset_top = -1897.0
+offset_right = 1394.0
+offset_bottom = -742.0
+texture_normal = ExtResource("24_ovdgr")
+stretch_mode = 0
 
-[node name="Scandinavia" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-101, -2282)
-scale = Vector2(2.2037, 2.52926)
-texture = ExtResource("20_5xetb")
+[node name="Egypt" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -152.0
+offset_top = -1267.0
+offset_right = 577.0
+offset_bottom = -642.0
+texture_normal = ExtResource("32_eq6h7")
+stretch_mode = 0
 
-[node name="NorthernEurope" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-238, -1573)
-scale = Vector2(2.21598, 2.77837)
-texture = ExtResource("21_y1w62")
+[node name="EastAfrica" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = 125.0
+offset_top = -781.0
+offset_right = 1236.0
+offset_bottom = 586.0
+rotation = -0.132734
+texture_normal = ExtResource("27_x5hjw")
+stretch_mode = 0
 
-[node name="Ukraine" type="Sprite2D" parent="Camera2D"]
-position = Vector2(702, -1779)
-scale = Vector2(2.9391, 2.71088)
-texture = ExtResource("22_viykx")
+[node name="NorthAfrica" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -1068.0
+offset_top = -1368.0
+offset_right = 269.0
+offset_bottom = -49.0
+texture_normal = ExtResource("29_raift")
+stretch_mode = 0
 
-[node name="SouthernEurope" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-175, -911)
-scale = Vector2(2.6685, 2.64072)
-texture = ExtResource("23_xsfw2")
+[node name="Congo" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -318.0
+offset_top = -403.0
+offset_right = 693.0
+offset_bottom = 478.0
+texture_normal = ExtResource("26_xp2qh")
+stretch_mode = 0
 
-[connection signal="pressed" from="Camera2D/Alsaka/Button" to="Camera2D/Alsaka/Button" method="_on_pressed"]
+[node name="SouthAfrica" type="TextureButton" parent="Camera2D/ContientController"]
+offset_left = -163.0
+offset_top = 222.0
+offset_right = 954.0
+offset_bottom = 1336.0
+texture_normal = ExtResource("25_7w3w2")
+stretch_mode = 0
+
+[node name="GameStateController" type="Node" parent="Camera2D"]

@@ -1,14 +1,66 @@
-[gd_scene load_steps=7 format=3 uid="uid://br7pi5rj3id8m"]
+[gd_scene load_steps=9 format=3 uid="uid://br7pi5rj3id8m"]
 
 [ext_resource type="Texture2D" uid="uid://bvj8wqf2ft7nt" path="res://GD-Risk-Game-SW-CW/Player Setup/menu_background.png" id="1_gf1lb"]
+[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/players.cs" id="1_qtdk3"]
 [ext_resource type="Texture2D" uid="uid://c5vo5xsiwj3ex" path="res://GD-Risk-Game-SW-CW/Player Setup/startbutton.png" id="2_xfltt"]
 [ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/Player Setup/Button.gd" id="3_2p0ek"]
 [ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/DropDownMenu.cs" id="4_2mijy"]
-[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/GameController.cs" id="6_iamgw"]
+[ext_resource type="Script" path="res://GD-Risk-Game-SW-CW/PlayerTypeDropdown1.cs" id="5_4v68s"]
 
 [sub_resource type="SystemFont" id="SystemFont_0he2u"]
 
+[sub_resource type="CSharpScript" id="CSharpScript_n88lu"]
+script/source = "using Godot;
+using System.Collections.Generic;
+
+public partial class GameController : Node
+{
+	private Dictionary<int, string> playerTypes = new Dictionary<int, string>();
+
+	public override void _Ready()
+	{
+	   base._Ready();
+	   ConnectDropDownMenus();
+	}
+
+	private void ConnectDropDownMenus()
+	{
+	   for (int i = 1; i <= 6; i++)
+	   {
+		  DropDownMenu dropdown = GetNode<DropDownMenu>($\"PlayerTypeDropdown{i}\");
+		  if (dropdown != null)
+		  {
+			 dropdown.PlayerSlot = i; // Ensure this is set correctly either here or elsewhere before connections
+			 
+			 dropdown.Connect(nameof(DropDownMenu.PlayerSelectionChanged), this, nameof(OnPlayerTypeSelected));
+		  }
+	   }
+	}
+
+	private void OnPlayerTypeSelected(int playerSlot, string selection)
+	{
+	   GD.Print($\"Player {playerSlot} selected: {selection}\");
+	   playerTypes[playerSlot] = selection; // Update player type
+	   UpdatePlayerCountAndType(); // Implement this method to handle changes
+	}
+	
+	
+	private void UpdatePlayerCountAndType()
+	{
+	   int numberOfPlayers = 0;
+	   foreach (var type in playerTypes.Values)
+	   {
+		  if (type != \"None\") numberOfPlayers++;
+	   }
+
+	   GD.Print($\"Number of Players: {numberOfPlayers}\");
+	   // Here you can update any UI elements or game settings based on the number of active players
+	}
+}
+"
+
 [node name="Player Setup" type="Node2D"]
+script = ExtResource("1_qtdk3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -88,14 +140,14 @@ theme_override_fonts/font = SubResource("SystemFont_0he2u")
 theme_override_font_sizes/font_size = 40
 text = "Player 1"
 
-[node name="Button" type="Button" parent="Startbutton"]
+[node name="StartButton" type="Button" parent="Startbutton"]
 offset_left = -83.0
 offset_top = 95.0
 offset_right = 69.0
 offset_bottom = 142.0
 script = ExtResource("3_2p0ek")
 
-[node name="Label" type="Label" parent="Startbutton/Button"]
+[node name="Label" type="Label" parent="Startbutton/StartButton"]
 layout_mode = 0
 offset_left = 25.0
 offset_right = 167.0
@@ -105,14 +157,14 @@ theme_override_font_sizes/font_size = 30
 text = "START"
 
 [node name="GameController" type="Node" parent="."]
-script = ExtResource("6_iamgw")
+script = SubResource("CSharpScript_n88lu")
 
 [node name="PlayerTypeDropdown1" type="OptionButton" parent="GameController"]
 offset_left = -178.0
 offset_top = -203.0
 offset_right = -28.0
 offset_bottom = -146.0
-script = ExtResource("4_2mijy")
+script = ExtResource("5_4v68s")
 
 [node name="PlayerTypeDropdown2" type="OptionButton" parent="GameController"]
 offset_left = -172.0
@@ -143,13 +195,13 @@ offset_bottom = -2.0
 script = ExtResource("4_2mijy")
 
 [node name="PlayerTypeDropdown6" type="OptionButton" parent="GameController"]
-offset_left = 308.0
-offset_top = 67.0
-offset_right = 458.0
-offset_bottom = 124.0
+offset_left = 294.0
+offset_top = 65.0
+offset_right = 444.0
+offset_bottom = 122.0
 script = ExtResource("4_2mijy")
 
-[connection signal="pressed" from="Startbutton/Button" to="Startbutton/Button" method="_on_pressed"]
+[connection signal="pressed" from="Startbutton/StartButton" to="Startbutton/StartButton" method="_on_pressed"]
 [connection signal="item_selected" from="GameController/PlayerTypeDropdown1" to="GameController/PlayerTypeDropdown1" method="_on_item_selected"]
 [connection signal="item_selected" from="GameController/PlayerTypeDropdown2" to="GameController/PlayerTypeDropdown2" method="_on_item_selected"]
 [connection signal="item_selected" from="GameController/PlayerTypeDropdown3" to="GameController/PlayerTypeDropdown3" method="_on_item_selected"]

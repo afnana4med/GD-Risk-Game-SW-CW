@@ -5,25 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="616cb610-016b-44cc-9dd8-df5903e53ad3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/Practice.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/Practice.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/Practice.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/Practice.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/Practice.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/ref/Practice.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/ref/Practice.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/refint/Practice.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/Debug/refint/Practice.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Practice/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Practice/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alsaka.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Button.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Button.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Node.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player Setup/Button.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Player Setup/Button.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player Setup/PlayerTypeDropdown.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Player Setup/PlayerTypeDropdown.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/continents.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/continents.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DropDownMenu.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameController.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/players.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/players.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +64,7 @@
       <workItem from="1710861374166" duration="12000" />
       <workItem from="1710861819964" duration="7000" />
       <workItem from="1710863946874" duration="51000" />
-      <workItem from="1710864030420" duration="14906000" />
+      <workItem from="1710864030420" duration="22482000" />
     </task>
     <servers />
   </component>

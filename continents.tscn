@@ -14,3 +14,4 @@ transform = Transform2D(1, 0, 0, 1, 0, 150)
 game_controller = NodePath("..")
 
 [node name="TerritoryManager" parent="." instance=ExtResource("3_uoay1")]
+position = Vector2(475, 698)

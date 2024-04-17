@@ -9,31 +9,44 @@ public class Player
     public List<Territory> Territories { get; private set; }
     public Color TerritoryColor { get; set; }
     
-    public int Armies { get; set; }
-    public int Infantry { get; set; }
-    public int Cavalry { get; set; }
-    public int Artillery { get; set; }
+    // Specific army types
+    private int infantry;
+    private int cavalry;
+    private int artillery;
 
-    public Player(string name, int initialArmies )
-    
+    public int Infantry
+    {
+        get => infantry;
+        set { infantry = value; UpdateTotalArmies(); }
+    }
+
+    public int Cavalry
+    {
+        get => cavalry;
+        set { cavalry = value; UpdateTotalArmies(); }
+    }
+
+    public int Artillery
+    {
+        get => artillery;
+        set { artillery = value; UpdateTotalArmies(); }
+    }
+
+    public int TotalArmies { get; private set; } // Total of all army types
+
+    public Player(string name, int initialArmies)
     {
         Name = name;
-        Armies = initialArmies;
+        Infantry = initialArmies; // Initialize all as infantry for simplicity
         Territories = new List<Territory>();
     }
-    
-    public void AddTerritory(Territory territory) {
-        if (!Territories.Contains(territory)) {
-            Territories.Add(territory);
-            territory.Owner = this;
-        }
+
+    private void UpdateTotalArmies()
+    {
+        TotalArmies = Infantry + Cavalry * 5 + Artillery * 10; // Example conversion rates
     }
 
-    public void RemoveTerritory(Territory territory) {
-        if (Territories.Contains(territory)) {
-            Territories.Remove(territory);
-            territory.Owner = null;
-        }
-    }
     
+
+    // More methods can be added to handle army movements, battles, etc.
 }

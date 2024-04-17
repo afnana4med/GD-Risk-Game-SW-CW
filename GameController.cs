@@ -8,36 +8,23 @@ public partial class GameController : Node {
 	public Graph gameBoard { get; private set; } = new Graph();
 	private int currentPlayerIndex = 0;
 
+	public enum GameState { Deploying, Attacking, Fortifying, WaitingForTurn }
+	private GameState currentState;
+
 	public Player CurrentPlayer => Players[currentPlayerIndex];
-	
-	public override void _Ready()
-	{
-		
-		
-		InitializePlayers(3); // For a three-player game
+
+	public override void _Ready() {
+		InitializePlayers(3);  // For a three-player game
 		InitializeGameBoard();
-		
-		// Further initialization...
+		currentState = GameState.Deploying; // Start with deploying troops
+		deployTroops(); // Start game by deploying troops
 	}
-	
-	
-	
 
-	
-
-	private void InitializePlayers(int numberOfPlayers)
-	{
-		// Define the initial number of infantry based on the number of players
+	private void InitializePlayers(int numberOfPlayers) {
 		Dictionary<int, int> initialArmiesPerPlayer = new Dictionary<int, int> {
-			{ 2, 40 }, // If 2 players, each gets 40 infantry
-			{ 3, 35 }, // If 3 players, each gets 35 infantry
-			{ 4, 30 }, // If 4 players, each gets 30 infantry
-			{ 5, 25 }, // If 5 players, each gets 25 infantry
-			{ 6, 20 }  // If 6 players, each gets 20 infantry
+			{ 2, 40 }, { 3, 35 }, { 4, 30 }, { 5, 25 }, { 6, 20 }
 		};
-
 		int initialArmies = initialArmiesPerPlayer[numberOfPlayers];
-
 		for (int i = 0; i < numberOfPlayers; i++) {
 			var player = new Player($"Player {i + 1}", 0);
 			player.Infantry = initialArmies;
@@ -238,6 +225,25 @@ public partial class GameController : Node {
 		gameBoard.AddEdge(territory42, territory41); // Western Australia - Eastern Australia
 		gameBoard.AddEdge(territory42, territory39); // Western Australia - Indonesia
 	}
+	
+	public void NextPhase() {
+		currentState = currentState switch {
+			GameState.Deploying => GameState.Attacking,
+			GameState.Attacking => GameState.Fortifying,
+			GameState.Fortifying => GameState.WaitingForTurn,
+			GameState.WaitingForTurn => GameState.Deploying,
+			_ => currentState
+		};
+		GD.Print($"Transitioned to {currentState}");
+	}
+	
+	public void EndTurn() {
+		currentPlayerIndex = (currentPlayerIndex + 1) % Players.Count;
+		GD.Print($"Turn ended. Now it's {CurrentPlayer.Name}'s turn.");
+		currentState = GameState.Deploying; // Start each turn by deploying troops
+	}
+	
+	
 
 	public void Attack()
 	{
@@ -271,7 +277,7 @@ public partial class GameController : Node {
 
 	public void deployTroops()
 	{
-		GD.Print("DEPLOY TROOPS");
+		GD.Print($"{CurrentPlayer.Name} is deploying troops.");
 	}
 	
 }

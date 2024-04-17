@@ -1,21 +1,50 @@
-
-using Godot;
 using System.Collections.Generic;
-using Practice.GD_Risk_Game_SW_CW;
+using Godot;
 
-public partial class GameController : Node
-{
-	private List<Player> players = new List<Player>();
-	private Graph gameBoard = new Graph();
+namespace Practice.GD_Risk_Game_SW_CW;
+
+public partial class GameController : Node {
+	public List<Player> Players { get; private set; } = new List<Player>();
+	public Graph gameBoard { get; private set; } = new Graph();
 	private int currentPlayerIndex = 0;
 
+	public Player CurrentPlayer => Players[currentPlayerIndex];
+	
 	public override void _Ready()
 	{
-		InitializeGameBoard();
+		
+		
 		InitializePlayers(3); // For a three-player game
+		InitializeGameBoard();
+		
 		// Further initialization...
 	}
+	
+	
+	
 
+	
+
+	private void InitializePlayers(int numberOfPlayers)
+	{
+		// Define the initial number of infantry based on the number of players
+		Dictionary<int, int> initialArmiesPerPlayer = new Dictionary<int, int> {
+			{ 2, 40 }, // If 2 players, each gets 40 infantry
+			{ 3, 35 }, // If 3 players, each gets 35 infantry
+			{ 4, 30 }, // If 4 players, each gets 30 infantry
+			{ 5, 25 }, // If 5 players, each gets 25 infantry
+			{ 6, 20 }  // If 6 players, each gets 20 infantry
+		};
+
+		int initialArmies = initialArmiesPerPlayer[numberOfPlayers];
+
+		for (int i = 0; i < numberOfPlayers; i++) {
+			var player = new Player($"Player {i + 1}", 0);
+			player.Infantry = initialArmies;
+			Players.Add(player);
+		}
+	}
+	
 	private void InitializeGameBoard()
 	{
 		// Step 1: Declare and Initialize Territories
@@ -210,35 +239,45 @@ public partial class GameController : Node
 		gameBoard.AddEdge(territory42, territory39); // Western Australia - Indonesia
 	}
 
-	private void InitializePlayers(int numberOfPlayers)
+	public void Attack()
 	{
-		// Define the initial number of armies based on player count
-		Dictionary<int, int> initialArmiesPerPlayer = new Dictionary<int, int>
-		{
-			{ 2, 40 }, // For a 2-player game, consider rules for neutral armies
-			{ 3, 35 },
-			{ 4, 30 },
-			{ 5, 25 },
-			{ 6, 20 }
-		};
+		GD.Print("ATTACK!");
+	}
 
-		// Determine the initial armies for the current number of players
-		int initialArmies = initialArmiesPerPlayer[numberOfPlayers];
+	public void Fortify()
+	{
+		GD.Print("FORTIFY!");
+	}
 
-		// Create players and assign initial armies
-		for (int i = 1; i <= numberOfPlayers; i++)
-		{
-			var player = new Player($"Player {i}");
-			player.Infantry = initialArmies; // Assign all initial armies as infantry
-			players.Add(player);
-		}
+	public void endTurn()
+	{
+		GD.Print("END TURN!");
+	}
 
-		// Note: At this point, territories are not assigned. Players will claim territories interactively.
+	public void cardTrade()
+	{
+		GD.Print("EXCHANGE CARD!");
+	}
+
+	public void endAttack()
+	{
+		GD.Print("END ATTACK!");
+	}
+
+	public void nextPhase()
+	{
+		GD.Print("NEXT PHASE");
+	}
+
+	public void deployTroops()
+	{
+		GD.Print("DEPLOY TROOPS");
 	}
 	
+}
+
 
 // Make sure to call InitializePlayers(numberOfPlayers) at the appropriate point in your game setup.
 
 
-}
 

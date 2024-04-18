@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Practice.GD_Risk_Game_SW_CW;
@@ -7,15 +9,17 @@ public partial class GameController : Node {
 	public List<Player> Players { get; private set; } = new List<Player>();
 	public Graph gameBoard { get; private set; } = new Graph();
 	private int currentPlayerIndex = 0;
-
 	public enum GameState { Deploying, Attacking, Fortifying, WaitingForTurn }
 	private GameState currentState;
+	private Random random = new Random();
 
 	public Player CurrentPlayer => Players[currentPlayerIndex];
 
 	public override void _Ready() {
 		InitializePlayers(3);  // For a three-player game
 		InitializeGameBoard();
+		InitialRandomDeployment();
+		StartTurn();
 		currentState = GameState.Deploying; // Start with deploying troops
 		deployTroops(); // Start game by deploying troops
 	}
@@ -31,6 +35,46 @@ public partial class GameController : Node {
 			Players.Add(player);
 		}
 	}
+	
+	// Randomly assign initial armies to each player's territory
+	private void InitialRandomDeployment() {
+		foreach (var player in Players) {
+			var territories = gameBoard.Territories.Values.Where(t => t.Owner == player).ToList();
+			int armiesPerTerritory = player.Infantry / territories.Count;
+			foreach (var territory in territories) {
+				territory.Armies += armiesPerTerritory;
+			}
+			player.Infantry %= territories.Count;
+		}
+		GD.Print("Random deployment completed.");
+	}
+	private void StartTurn() {
+		CalculateNewArmies(CurrentPlayer);
+		PromptPlayerDeployment(CurrentPlayer);
+	}
+	private void CalculateNewArmies(Player player) {
+		int territoryCount = player.Territories.Count;
+		int newArmies = Math.Max(territoryCount / 3, 3);  // Ensure at least 3 troops
+		player.Infantry += newArmies;
+		GD.Print($"{player.Name} receives {newArmies} new troops. Total available for deployment: {player.Infantry}");
+	}
+
+	private void PromptPlayerDeployment(Player player) {
+		// This would interact with the UI to allow the player to deploy their troops
+		// Depending on your UI setup, you might use signals or direct method calls here
+	}
+	
+	public void PlayerControlledDeployment(Player player, Territory territory, int armyCount) {
+		if (player.Infantry >= armyCount) {
+			territory.Armies += armyCount;
+			player.Infantry -= armyCount;
+			GD.Print($"{player.Name} has deployed {armyCount} armies to {territory.Name}.");
+		} else {
+			GD.Print($"Not enough available armies. {player.Name} has only {player.Infantry} available.");
+		}
+	}
+	
+	
 	
 	private void InitializeGameBoard()
 	{
@@ -226,7 +270,22 @@ public partial class GameController : Node {
 		gameBoard.AddEdge(territory42, territory39); // Western Australia - Indonesia
 	}
 	
-	public void NextPhase() {
+	
+	
+	public void deployTroops()
+	{
+		foreach (var player in Players) {
+			var territories = gameBoard.Territories.Values.Where(t => t.Owner == player).ToList();
+			int armiesPerTerritory = player.Infantry / territories.Count;
+			foreach (var territory in territories) {
+				territory.Armies += armiesPerTerritory;
+			}
+			player.Infantry %= territories.Count;  // Remainder armies to be placed manually or added to specific territories
+		}
+	}
+	
+	public void nextPhase()
+	{
 		currentState = currentState switch {
 			GameState.Deploying => GameState.Attacking,
 			GameState.Attacking => GameState.Fortifying,
@@ -235,19 +294,70 @@ public partial class GameController : Node {
 			_ => currentState
 		};
 		GD.Print($"Transitioned to {currentState}");
-	}
-	
-	public void EndTurn() {
-		currentPlayerIndex = (currentPlayerIndex + 1) % Players.Count;
-		GD.Print($"Turn ended. Now it's {CurrentPlayer.Name}'s turn.");
-		currentState = GameState.Deploying; // Start each turn by deploying troops
+		if (currentState == GameState.Deploying) {
+			deployTroops();
+		}
 	}
 	
 	
+	// resolve battle to be used
 
 	public void Attack()
+{
+    // This method is the entry point for initiating attacks.
+    // It would typically be triggered by a player's action in the UI,
+    // such as selecting an attacking territory and a defending territory.
+    
+    // You would retrieve the selected territories, likely stored in variables
+    // when the player makes their selection via the UI.
+    Territory selectedAttackingTerritory = ...; // Retrieved from UI
+    Territory selectedDefendingTerritory = ...; // Retrieved from UI
+    
+    // Check if the selected territories are valid for an attack
+    if (!IsValidAttack(selectedAttackingTerritory, selectedDefendingTerritory))
+    {
+        // Notify the player of an invalid attack and return early
+        GD.Print("Invalid attack. Select valid territories.");
+        return;
+    }
+
+    Player player = new Player();
+
+    player.resolveAttack(selectedAttackingTerritory, selectedDefendingTerritory);
+
+
+    // After the attack, check if the player wants to continue attacking
+    PromptForContinuedAttack();
+}
+
+private void PromptForContinuedAttack()
+{
+    // Display UI prompt asking the player if they want to continue attacking.
+    // The player’s response will determine the next action.
+    // For example, you might have a modal dialogue with "Attack Again" and "End Attacks" buttons.
+}
+
+// Example callback method for the "Attack Again" button
+private void OnAttackAgainSelected()
+{
+    // The player has chosen to attack again.
+    // Show UI for selecting the next attacking and defending territories.
+}
+
+private bool IsValidAttack(Territory attackingTerritory, Territory defendingTerritory)
+{
+	
+    // Implement logic to determine if the attack is valid
+    // For example, check if territories are adjacent and if the attacking territory has enough armies.
+    return true; // Placeholder return value
+}
+	
+public void endAttack()
 	{
-		GD.Print("ATTACK!");
+		GD.Print("Ending attack phase.");
+		currentState = GameState.Fortifying;  // Transition to the fortifying phase
+		GD.Print("Transitioned to fortifying phase. You can now move armies to strengthen your defenses.");
+		// Call any necessary methods to update the game state or UI here if needed
 	}
 
 	public void Fortify()
@@ -257,7 +367,11 @@ public partial class GameController : Node {
 
 	public void endTurn()
 	{
-		GD.Print("END TURN!");
+		currentPlayerIndex = (currentPlayerIndex + 1) % Players.Count;
+		
+		currentState = GameState.Deploying;
+		GD.Print($"Turn ended. Now it's {CurrentPlayer.Name}'s turn.");
+		deployTroops();
 	}
 
 	public void cardTrade()
@@ -265,20 +379,11 @@ public partial class GameController : Node {
 		GD.Print("EXCHANGE CARD!");
 	}
 
-	public void endAttack()
-	{
-		GD.Print("END ATTACK!");
-	}
+	
 
-	public void nextPhase()
-	{
-		GD.Print("NEXT PHASE");
-	}
+	
 
-	public void deployTroops()
-	{
-		GD.Print($"{CurrentPlayer.Name} is deploying troops.");
-	}
+	
 	
 }
 

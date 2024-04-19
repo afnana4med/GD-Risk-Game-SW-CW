@@ -10,12 +10,18 @@ public class Player
     public string Name { get; private set; }
     public List<Territory> Territories { get; private set; }
     public Color TerritoryColor { get; set; }
+    public List<Card> Cards { get; set; } = new List<Card>();
     
     // Specific army types
     private int infantry;
     private int cavalry;
     private int artillery;
 
+    
+    public class Card {
+        public string Type { get; set; } // e.g., Infantry, Cavalry, Artillery, Wild
+        public Territory Territory { get; set; } // Optional, links card to territory
+    }
     public int Infantry
     {
         get => infantry;

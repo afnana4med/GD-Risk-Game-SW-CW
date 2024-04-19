@@ -10,8 +10,13 @@ public partial class Territory : Node {
     public int Armies { get; set; }
 
     public Territory(string name) {
-        TerritoryName = name;
-        Armies = 0;  // Initial army count can be set to 0 or a default value
+        Name = name;
+        //Armies = 0;  // Initial army count can be set to 0 or a default value
+    }
+    
+    // Overriding ToString for better debugging output
+    public override string ToString() {
+        return $"{Name} - Armies: {Armies} (Owned by {Owner?.Name})";
     }
 }
 

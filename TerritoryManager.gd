@@ -4,14 +4,17 @@ extends Node
 @export var game_controller: Node
 signal territory_clicked(continent: String, country: String)
 
-#func _ready():
-	# Connect the 'pressed' signal for each TextureButton to the on_territory_pressed method
-	#for territory_button in get_children():
-		#territory_button.connect("pressed", self, "_on_territory_pressed", [territory_button.name])
 
 func emmit_territory_clicked(continent: String, country: String):
 	territory_clicked.emit(continent, country)
 	_on_territory_pressed(continent, country)
+	
+#func update_map_display(territories):
+	## This function updates the map display based on the current army count in each territory
+		#for territory_name in territories:
+			#var button = $continents.get_node(territory_name)  # Adjust path as necessary
+			#var army_count = territories[territory_name]["armies"]
+			#button.get_node("ArmyCountLabel").text = str(army_count)
 
 func _on_territory_pressed(continent: String, country: String):
 	var current_player = game_controller.CurrentPlayer

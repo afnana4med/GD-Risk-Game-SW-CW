@@ -23,7 +23,11 @@ public partial class GameController : Node
 	private GameState currentState;
 	private Random random = new Random();
 
-	public Player CurrentPlayer => Players[currentPlayerIndex];
+	public Player CurrentPlayer
+	{
+		get => Players[currentPlayerIndex];
+		set => Players[currentPlayerIndex] = value;
+	}
 
 	public override void _Ready()
 	{
@@ -243,47 +247,86 @@ public partial class GameController : Node
 		
 		// GD.Print($"Total territories after initialization: {gameBoard.Territories.Count}");
 	}
+	
+	/// <summary>
+	/// ///////////////////////////////////////////////////////////////////////////Deploying the armies ////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// </summary>
 
 	// Randomly assign initial armies to each player's territory
-	private void InitialRandomDeployment()
+	
+	
+	public enum DeploymentPhase
 	{
-		GD.Print("\n"+$"Starting deployment. Total players: {Players.Count}, Total territories: {gameBoard.Territories.Count}" + "\n");
+		Initial,
+		Additional
+	}
+
+	private DeploymentPhase currentDeploymentPhase = DeploymentPhase.Initial;
+	private bool armiesCalculated = false;
+	
+	public void OnDeploymentButtonClicked() {
+		if (currentDeploymentPhase == DeploymentPhase.Initial) {
+			InitialRandomDeployment();
+			currentDeploymentPhase = DeploymentPhase.Additional;
+			armiesCalculated = false;  // Ensure it's ready to calculate for the new phase
+		} else if (currentDeploymentPhase == DeploymentPhase.Additional) {
+			if (!armiesCalculated) {
+				CalculateNewArmies(CurrentPlayer);
+				armiesCalculated = true;
+			}
+			DeployAdditionalTroops();
+		}
+		PrintInitialSetup();  // Print setup after each deployment action
+	}
+
+	private void DeployAdditionalTroops() {
+		Player currentPlayer = CurrentPlayer;
+		while (currentPlayer.Infantry > 0) {
+			var territories = currentPlayer.Territories.Where(t => t.Armies > 0).ToList();
+			if (territories.Any()) {
+				var randomTerritory = territories[random.Next(territories.Count)];
+				randomTerritory.Armies++;
+				currentPlayer.Infantry--;  // Decrement the troops correctly
+
+				GD.Print($"{currentPlayer.Name} places an army in {randomTerritory.Name}. Total now: {randomTerritory.Armies}");
+			}
+		}
+
+		///////////PrintInitialSetup(); // Print updated setup after additional deployment
+		if (currentPlayer.Infantry == 0) {
+			GD.Print("All additional troops have been deployed.");
+			armiesCalculated = false;  // Reset for the next turn or phase
+		}
+	}
+
+	private void InitialRandomDeployment() {
+		GD.Print("Starting initial deployment");
 		var unclaimedTerritories = gameBoard.Territories.Values.ToList();
 
-		// Phase 1: Claim all territories
-		while (unclaimedTerritories.Any())
-		{
-			foreach (var player in Players)
-			{
+		while (unclaimedTerritories.Any()) {
+			foreach (var player in Players) {
 				if (!unclaimedTerritories.Any()) break;
 				var territory = unclaimedTerritories[random.Next(unclaimedTerritories.Count)];
 				territory.Owner = player;
 				player.AddTerritory(territory);
-				territory.Armies = 1;  // Assign 1 army initially when claiming
-				player.Infantry--;
+				territory.Armies = 1;  // Each territory gets 1 army initially
+				player.Infantry--;  // Decrement infantry for each army placed
 				unclaimedTerritories.Remove(territory);
-
-				// Print the initial assignment of each territory
 				GD.Print($"{player.Name} has claimed {territory.Name} with 1 army.");
 			}
 		}
 
-		// Phase 2: Place remaining armies
-		foreach (var player in Players)
-		{
-			while (player.Infantry > 0)
-			{
+		// Distribute remaining armies
+		foreach (var player in Players) {
+			while (player.Infantry > 0) {
 				var randomTerritory = player.Territories[random.Next(player.Territories.Count)];
 				randomTerritory.Armies++;
 				player.Infantry--;
-
-				// Print the distribution of each army
 				GD.Print($"{player.Name} places an additional army in {randomTerritory.Name}. Total now: {randomTerritory.Armies}");
 			}
 		}
-
-		PrintInitialSetup();
 	}
+
 
 	private void PrintInitialSetup()
 	{
@@ -297,11 +340,6 @@ public partial class GameController : Node
 			}
 		}
 	}
-
-	
-	
-	
-	
 	
 	
 	private int CalculateCardBonus(Player player) {
@@ -322,12 +360,18 @@ public partial class GameController : Node
 		// Logic to determine if a set can be traded in and calculate bonus
 	}
 
-
+	
 	private void StartTurn()
 	{
+		GD.Print(" ");
+		CurrentPlayer = Players[currentPlayerIndex];  // Make sure you're updating the current player at the start of each turn
+		if (!armiesCalculated) {
+			CalculateNewArmies(CurrentPlayer);
+			armiesCalculated = true;  // Mark that armies have been calculated
+		}
+		GD.Print($"{CurrentPlayer.Name} can deploy {CurrentPlayer.Infantry} additional troops.");
 		//GD.Print("Starting turn for " + CurrentPlayer.Name);
-		GD.Print("");
-		CalculateNewArmies(CurrentPlayer);
+		
 		// GD.Print(CurrentPlayer.Name + " receives " + CurrentPlayer.Infantry +
 		//          " new troops. Total available for deployment: " + CurrentPlayer.Infantry);
 		// HandleCardTrades(CurrentPlayer); // Handle card trades at the start of the turn
@@ -337,23 +381,25 @@ public partial class GameController : Node
 	
 	
 	private void CalculateNewArmies(Player player) {
-		// 1. Calculate armies from territories
+		GD.Print($"Calculating new armies for {player.Name}");
+
+		// Debug current state before calculations
+		GD.Print($"Current infantry before any calculations: {player.Infantry}");
+
 		int territoryCount = player.Territories.Count;
-		int newArmiesFromTerritories = Math.Max(territoryCount / 3, 3); // Ensure minimum 3 armies
+		int newArmiesFromTerritories = Math.Max(territoryCount / 3, 3);
+		GD.Print($"Territories count: {territoryCount}, New armies from territories: {newArmiesFromTerritories}");
 
-		// 2. Calculate armies from continent control
 		int newArmiesFromContinents = CalculateContinentBonus(player);
+		GD.Print($"New armies from continents: {newArmiesFromContinents}");
 
-		// 3. Calculate armies from trading in cards
 		int newArmiesFromCards = CalculateCardBonus(player);
+		GD.Print($"New armies from cards: {newArmiesFromCards}");
 
-		// Sum up all new armies
 		int totalNewArmies = newArmiesFromTerritories + newArmiesFromContinents + newArmiesFromCards;
 		player.Infantry += totalNewArmies;
 
-		GD.Print($"{player.Name} receives {totalNewArmies} new troops. Total available for deployment: {player.Infantry}");
-		
-		PrintInitialSetup();
+		GD.Print($"Total new armies added: {totalNewArmies}, Total infantry now: {player.Infantry}\n");
 	}
 	
 	private Dictionary<string, Player> territoryOwners = new Dictionary<string, Player>();
@@ -378,11 +424,6 @@ public partial class GameController : Node
 
 	
 	private int CalculateContinentBonus(Player player) {
-		if (player == null) {
-			GD.Print("Error: Player object is null.");
-			return 0;
-		}
-
 		int continentBonus = 0;
 		foreach (var continent in continentValues.Keys) {
 			if (DoesPlayerControlContinent(player, continent)) {
@@ -393,38 +434,28 @@ public partial class GameController : Node
 	}
 	
 	private bool DoesPlayerControlContinent(Player player, string continent) {
-		if (continentTerritories == null || territoryOwners == null) {
-			GD.Print("Error: Data structures are not initialized.");
-			return false;
-		}
-
 		foreach (var territory in continentTerritories[continent]) {
 			if (!territoryOwners.ContainsKey(territory) || territoryOwners[territory] != player) {
-				return false; // As soon as one territory is found not controlled by the player, return false
+				return false;
 			}
 		}
-		return true; // Player controls all territories in the continent
+		return true;
 	}
-	
-	/// <summary>
-	/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// </summary>
-	/// <param name="player"></param>
 
-	private void PromptPlayerDeployment(Player player) {
-		// This would interact with the UI to allow the player to deploy their troops
-		// Depending on your UI setup, you might use signals or direct method calls here
-	}
+	// private void PromptPlayerDeployment(Player player) {
+	// 	// This would interact with the UI to allow the player to deploy their troops
+	// 	// Depending on your UI setup, you might use signals or direct method calls here
+	// }
 	
-	public void PlayerControlledDeployment(Player player, Territory territory, int armyCount) {
-		if (player.Infantry >= armyCount) {
-			territory.Armies += armyCount;
-			player.Infantry -= armyCount;
-			GD.Print($"{player.Name} has deployed {armyCount} armies to {territory.Name}.");
-		} else {
-			GD.Print($"Not enough available armies. {player.Name} has only {player.Infantry} available.");
-		}
-	}
+	// public void PlayerControlledDeployment(Player player, Territory territory, int armyCount) {
+	// 	if (player.Infantry >= armyCount) {
+	// 		territory.Armies += armyCount;
+	// 		player.Infantry -= armyCount;
+	// 		GD.Print($"{player.Name} has deployed {armyCount} armies to {territory.Name}.");
+	// 	} else {
+	// 		GD.Print($"Not enough available armies. {player.Name} has only {player.Infantry} available.");
+	// 	}
+	// }
 	
 	
 	
@@ -456,13 +487,35 @@ public partial class GameController : Node
 		}
 	}
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////Deployment Done////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	/// <summary>
-	/// /////////////////////////////////////////////////////////Attacking////////////////////////////////////////////////////////////////////////////////////////////////
-	/// </summary>
+	
+	////////////////////////////////////////////////////////////Attacking Started///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-private void PromptForContinuedAttack()
-{
+	public Territory SelectedAttackingTerritory { get; set; }
+	public Territory SelectedDefendingTerritory { get; set; }
+
+	public void SelectAttackingTerritory(Territory territory) {
+		if (territory.Owner == CurrentPlayer && territory.Armies > 1) {
+			SelectedAttackingTerritory = territory;
+			GD.Print($"Selected {territory.Name} as attacking territory.");
+		} else {
+			GD.Print("Invalid selection for attacking territory.");
+		}
+	}
+
+	public void SelectDefendingTerritory(Territory territory) {
+		if (SelectedAttackingTerritory != null && gameBoard.AreTerritoriesAdjacent(SelectedAttackingTerritory, territory)) {
+			SelectedDefendingTerritory = territory;
+			GD.Print($"Selected {territory.Name} as defending territory.");
+		} else {
+			GD.Print("Invalid selection for defending territory.");
+		}
+	}
+	
+	
+	private void PromptForContinuedAttack()
+	{
     // Display UI prompt asking the player if they want to continue attacking.
     // The player’s response will determine the next action.
     // For example, you might have a modal dialogue with "Attack Again" and "End Attacks" buttons.
@@ -576,15 +629,22 @@ private bool IsValidAttack(Territory attackingTerritory, Territory defendingTerr
     // Check adjacency and if the attacking territory has enough armies to attack
     return gameBoard.AreTerritoriesAdjacent(attackingTerritory, defendingTerritory) && attackingTerritory.Armies > 1;
 }
+public void ResetAttackPhase() {
+	if (SelectedAttackingTerritory != null) {
+		// Reset the button color for the attacking territory
+		EmitSignal("reset_button_color", SelectedAttackingTerritory.Name);
+	}
+	if (SelectedDefendingTerritory != null) {
+		// Reset the button color for the defending territory
+		EmitSignal("reset_button_color", SelectedDefendingTerritory.Name);
+	}
+	SelectedAttackingTerritory = null;
+	SelectedDefendingTerritory = null;
+}
 
 
 
-
-
-
-/// <summary>
 /// /////////////////////////////////////////////////////////////////END ATTACK////////////////////////////////////////////////////////////////////////////////////////////////////
-/// </summary>
 
 	
 public void endAttack()

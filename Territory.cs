@@ -1,3 +1,4 @@
+
 using Godot;
 
 namespace Practice.GD_Risk_Game_SW_CW;
@@ -11,7 +12,8 @@ public partial class Territory : Node {
 
     public Territory(string name) {
         Name = name;
-        //Armies = 0;  // Initial army count can be set to 0 or a default value
+        Armies = 0;  // Initial army count can be set to 0 or a default value
+        Owner = null;
     }
     
     // Overriding ToString for better debugging output
@@ -38,6 +40,17 @@ public class Graph
     {
         Territories[territory.Name] = territory;
         Adjacencies[territory] = new List<Territory>();
+    }
+    
+    public bool AreTerritoriesAdjacent(Territory territory1, Territory territory2)
+    {
+        // Check if the territories are in the adjacency list and have a direct connection
+        if (Adjacencies.TryGetValue(territory1, out List<Territory> adjacentTerritories))
+        {
+            return adjacentTerritories.Contains(territory2);
+        }
+    
+        return false;
     }
 
     public void AddEdge(Territory from, Territory to)

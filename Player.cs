@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,28 @@ public class Player
         TotalArmies = Infantry + Cavalry * 5 + Artillery * 10; // Example conversion rates
     }
 
+    
+    
+    
+    
+    public int DecideNumberOfDiceToRoll(Territory territory)
+    {
+        // Implement logic for the player (or AI) to decide how many dice to roll based on the territory's army count
+        // This can involve player input or AI decision making
+        return 0;
+    }
+
+    public List<int> RollDice(int numberOfDice)
+    {
+        Random random = new Random();
+        List<int> diceRolls = new List<int>();
+        for (int i = 0; i < numberOfDice; i++)
+        {
+            diceRolls.Add(random.Next(1, 7)); // Simulate rolling a six-sided die
+        }
+        return diceRolls;
+    }
+    
     public void AddTerritory(Territory territory)
     {
         if (!Territories.Contains(territory))
@@ -77,16 +100,7 @@ public class Player
         }
     }
     
-    public List<int> RollDice(int numberOfDice)
-    {
-        List<int> results = new List<int>();
-        Random random = new Random();
-        for (int i = 0; i < numberOfDice; i++)
-        {
-            results.Add(random.Next(1, 7));  // Rolling a six-sided die
-        }
-        return results;
-    }
+    
 
 
     // Method to handle the outcome of a battle where 'this' is the attacker
@@ -94,22 +108,22 @@ public class Player
     {
         Player attacker = attackingTerritory.Owner;
         Player defender = defendingTerritory.Owner;
-
+    
         // Ensure there are enough armies to attack and defend
         if (attackingTerritory.Armies < 2)
         {
             GD.Print("You need at least two armies to attack from a territory.");
             return;
         }
-
+    
         // Determine the number of dice each side can roll
         int attackDiceCount = Math.Min(3, attackingTerritory.Armies - 1);
         int defendDiceCount = Math.Min(2, defendingTerritory.Armies);
-
+    
         // Roll the dice
         List<int> attackerDice = attacker.RollDice(attackDiceCount).OrderByDescending(d => d).ToList();
         List<int> defenderDice = defender.RollDice(defendDiceCount).OrderByDescending(d => d).ToList();
-
+    
         // Compare the dice and determine losses
         int attackerLosses = 0, defenderLosses = 0;
         int comparisons = Math.Min(attackerDice.Count, defenderDice.Count);
@@ -124,11 +138,11 @@ public class Player
                 attackerLosses++; // Ties go to the defender
             }
         }
-
+    
         // Apply the results
         attackingTerritory.Armies -= attackerLosses;
         defendingTerritory.Armies -= defenderLosses;
-
+    
         // If the territory is captured
         if (defendingTerritory.Armies == 0)
         {
@@ -138,7 +152,7 @@ public class Player
             attackingTerritory.Armies -= armiesToMove;
             defendingTerritory.Armies = armiesToMove;
         }
-
+    
         // Check if the attack phase should continue or if the attacker decides to stop
         // This can be decided through UI interaction or player input
         this.UpdateTotalArmies();

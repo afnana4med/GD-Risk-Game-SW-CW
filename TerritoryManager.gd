@@ -1,45 +1,48 @@
-# TerritoryManager.gd
-extends Node
 
-@export var game_controller: Node
-signal territory_clicked(continent: String, country: String)
+extends Node2D 
+# Declare these variables at the top of your script, outside any function.
+var selected_attacking_territory = null
+var selected_defending_territory = null
+var last_selected_button = null
 
 
-func emmit_territory_clicked(continent: String, country: String):
-	territory_clicked.emit(continent, country)
-	_on_territory_pressed(continent, country)
+ # Ensure your script extends a proper node type if needed.
+
+# Make sure the game controller is correctly referenced.
+@export var game_controller: Node2D
+# Declare the variables at the class level as shown previously.
+
+
+func _on_TerritoryButton_Pressed(territory_button: TextureButton):
+	print("Button pressed: ", territory_button.name)  # Confirm function is called.
+	var territory_name = territory_button.name
+	var territory = game_controller.GetTerritoryByName(territory_name)
 	
-#func update_map_display(territories):
-	## This function updates the map display based on the current army count in each territory
-		#for territory_name in territories:
-			#var button = $continents.get_node(territory_name)  # Adjust path as necessary
-			#var army_count = territories[territory_name]["armies"]
-			#button.get_node("ArmyCountLabel").text = str(army_count)
+	if territory == null:
+		print("Territory not found: ", territory_name)
+		return
 
-func _on_territory_pressed(continent: String, country: String):
-	var current_player = game_controller.CurrentPlayer
-	var current_action = game_controller.CurrentAction  # Ensure this property is exposed in GameController
+	print("Territory owner: ", territory.owner, " Current Player: ", game_controller.CurrentPlayer)
+	
+	if selected_attacking_territory == null and territory.owner == game_controller.CurrentPlayer:
+		if last_selected_button:
+			last_selected_button.modulate = Color.WHITE
+		selected_attacking_territory = territory
+		territory_button.modulate = Color.RED
+		last_selected_button = territory_button
+		print("Selected attacking territory: ", territory.name)
+	elif selected_attacking_territory != null and territory.owner != game_controller.CurrentPlayer:
+		selected_defending_territory = territory
+		territory_button.modulate = Color.BLUE
+		print("Selected defending territory: ", territory.name)
+	elif selected_attacking_territory != null and territory == selected_attacking_territory:
+		reset_selection()
 
-	match current_action:
-		"deploy":
-			deploy_armies(current_player, country, 1)  # Assuming 1 army for simplicity
-		"attack":
-			attempt_attack(current_player, country)
-		"fortify":
-			begin_fortification(current_player, country)
-		"move":
-			move_armies(current_player, country)
-		_:
-			print("Unhandled action type")
+func reset_selection():
+	if last_selected_button:
+		last_selected_button.modulate = Color.WHITE
+	selected_attacking_territory = null
+	selected_defending_territory = null
+	last_selected_button = null
+	print("Selections have been reset.")
 
-func deploy_armies(player, territory_name, number_of_armies):
-	print("Deploying %d armies to %s by %s" % [number_of_armies, territory_name, player.name])
-
-func attempt_attack(player, territory_name):
-	print("%s is attacking %s" % [player.name, territory_name])
-
-func begin_fortification(player, territory_name):
-	print("%s is fortifying %s" % [player.name, territory_name])
-
-func move_armies(player, territory_name):
-	print("%s is moving armies to %s" % [player.name, territory_name])

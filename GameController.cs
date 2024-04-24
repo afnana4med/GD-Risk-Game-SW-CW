@@ -29,9 +29,10 @@ public partial class GameController : Node
 	{
 		InitializePlayers(3); // For a three-player game
 		InitializeGameBoard();
-		//StartTurn(); //after deployment of all armies
-		//currentState = GameState.Deploying; // Start with deploying troops
-		//deployTroops(); // Start game by deploying troops
+		// InitialRandomDeployment();
+		// StartTurn(); //after deployment of all armies
+		// //currentState = GameState.Deploying; // Start with deploying troops
+		// //deployTroops(); // Start game by deploying troops
 	}
 	
 
@@ -240,13 +241,13 @@ public partial class GameController : Node
 		gameBoard.AddEdge(territory42, territory41); // Western Australia - Eastern Australia
 		gameBoard.AddEdge(territory42, territory39); // Western Australia - Indonesia
 		
-		GD.Print($"Total territories after initialization: {gameBoard.Territories.Count}");
+		// GD.Print($"Total territories after initialization: {gameBoard.Territories.Count}");
 	}
 
 	// Randomly assign initial armies to each player's territory
 	private void InitialRandomDeployment()
 	{
-		GD.Print($"Starting deployment. Total players: {Players.Count}, Total territories: {gameBoard.Territories.Count}");
+		GD.Print("\n"+$"Starting deployment. Total players: {Players.Count}, Total territories: {gameBoard.Territories.Count}" + "\n");
 		var unclaimedTerritories = gameBoard.Territories.Values.ToList();
 
 		// Phase 1: Claim all territories
@@ -297,14 +298,43 @@ public partial class GameController : Node
 		}
 	}
 
-	private Dictionary<string, int> continentValues = new Dictionary<string, int> {
-    {"North America", 5},
-    {"South America", 2},
-    {"Europe", 5},
-    {"Africa", 3},
-    {"Asia", 7},
-    {"Australia", 2}
-};
+	
+	
+	
+	
+	
+	
+	private int CalculateCardBonus(Player player) {
+		// Placeholder for card trading logic
+		return 0; // Placeholder return value
+	}
+
+	private void PrintPlayerArmies() {
+		GD.Print("Current infantry distribution:");
+		foreach (var player in Players) {
+			GD.Print($"{player.Name} has {player.Infantry} infantry.");
+		}
+	}
+	
+
+// Method to handle card trades, which could be part of the player's turn actions
+	private void HandleCardTrades(Player player) {
+		// Logic to determine if a set can be traded in and calculate bonus
+	}
+
+
+	private void StartTurn()
+	{
+		//GD.Print("Starting turn for " + CurrentPlayer.Name);
+		GD.Print("");
+		CalculateNewArmies(CurrentPlayer);
+		// GD.Print(CurrentPlayer.Name + " receives " + CurrentPlayer.Infantry +
+		//          " new troops. Total available for deployment: " + CurrentPlayer.Infantry);
+		// HandleCardTrades(CurrentPlayer); // Handle card trades at the start of the turn
+		// PrintPlayerArmies();
+		// PromptPlayerDeployment(CurrentPlayer);
+	}
+	
 	
 	private void CalculateNewArmies(Player player) {
 		// 1. Calculate armies from territories
@@ -322,9 +352,37 @@ public partial class GameController : Node
 		player.Infantry += totalNewArmies;
 
 		GD.Print($"{player.Name} receives {totalNewArmies} new troops. Total available for deployment: {player.Infantry}");
+		
+		PrintInitialSetup();
 	}
 	
+	private Dictionary<string, Player> territoryOwners = new Dictionary<string, Player>();
+	
+	private Dictionary<string, int> continentValues = new Dictionary<string, int> {
+		{"North America", 5},
+		{"South America", 2},
+		{"Europe", 5},
+		{"Africa", 3},
+		{"Asia", 7},
+		{"Australia", 2}
+	};
+
+	private Dictionary<string, List<string>> continentTerritories = new Dictionary<string, List<string>>() {
+		{"North America", new List<string>{"Alaska", "Alberta", "Central America", "Eastern United States", "Greenland", "Northwest Territory", "Ontario", "Quebec", "Western United States"}},
+		{"South America", new List<string>{"Argentina", "Brazil", "Peru", "Venezuela"}},
+		{"Europe", new List<string>{"Great Britain", "Iceland", "Northern Europe", "Scandinavia", "Southern Europe", "Ukraine", "Western Europe"}},
+		{"Africa", new List<string>{"Congo", "East Africa", "Egypt", "Madagascar", "North Africa", "South Africa"}},
+		{"Asia", new List<string>{"Afghanistan", "China", "India", "Irkutsk", "Japan", "Kamchatka", "Middle East", "Mongolia", "Siam", "Siberia", "Ural", "Yakutsk"}},
+		{"Australia", new List<string>{"Eastern Australia", "Indonesia", "New Guinea", "Western Australia"}}
+	};
+
+	
 	private int CalculateContinentBonus(Player player) {
+		if (player == null) {
+			GD.Print("Error: Player object is null.");
+			return 0;
+		}
+
 		int continentBonus = 0;
 		foreach (var continent in continentValues.Keys) {
 			if (DoesPlayerControlContinent(player, continent)) {
@@ -333,50 +391,25 @@ public partial class GameController : Node
 		}
 		return continentBonus;
 	}
+	
 	private bool DoesPlayerControlContinent(Player player, string continent) {
-		// Implement logic to check if player controls all territories in the continent
-		// This is a placeholder function
-		return false; // Placeholder return value
+		if (continentTerritories == null || territoryOwners == null) {
+			GD.Print("Error: Data structures are not initialized.");
+			return false;
+		}
+
+		foreach (var territory in continentTerritories[continent]) {
+			if (!territoryOwners.ContainsKey(territory) || territoryOwners[territory] != player) {
+				return false; // As soon as one territory is found not controlled by the player, return false
+			}
+		}
+		return true; // Player controls all territories in the continent
 	}
 	
-	
-
-// Method to handle card trades, which could be part of the player's turn actions
-	private void HandleCardTrades(Player player) {
-		// Logic to determine if a set can be traded in and calculate bonus
-	}
-
-
-private void StartTurn() {
-	GD.Print($"Starting turn for {CurrentPlayer.Name}");
-	HandleCardTrades(CurrentPlayer); // Handle card trades at the start of the turn
-	CalculateNewArmies(CurrentPlayer);
-	PrintPlayerArmies();
-	PromptPlayerDeployment(CurrentPlayer);
-}
-
-
-
-
-
-
-
-private int CalculateCardBonus(Player player) {
-    // Placeholder for card trading logic
-    return 0; // Placeholder return value
-}
-
-private void PrintPlayerArmies() {
-    GD.Print("Current infantry distribution:");
-    foreach (var player in Players) {
-        GD.Print($"{player.Name} has {player.Infantry} infantry.");
-    }
-}
-
-// Continue with other methods as they were...
-
-	
-	
+	/// <summary>
+	/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// </summary>
+	/// <param name="player"></param>
 
 	private void PromptPlayerDeployment(Player player) {
 		// This would interact with the UI to allow the player to deploy their troops
@@ -392,9 +425,6 @@ private void PrintPlayerArmies() {
 			GD.Print($"Not enough available armies. {player.Name} has only {player.Infantry} available.");
 		}
 	}
-	
-	
-	
 	
 	
 	
@@ -427,21 +457,9 @@ private void PrintPlayerArmies() {
 	}
 	
 	
-	// resolve battle to be used
-
-	public void Attack() {
-		GD.Print("ATTACK!");
-		// Example of adding a dice roll to determine the outcome
-		int attackDice = random.Next(1, 7);  // Simulating one die roll
-		int defendDice = random.Next(1, 7);  // Defender's die
-		if (attackDice > defendDice) {
-			GD.Print("Attacker wins the roll.");
-			// Handle attack success logic
-		} else {
-			GD.Print("Defender wins the roll.");
-			// Handle defense success logic
-		}
-	}
+	/// <summary>
+	/// /////////////////////////////////////////////////////////Attacking////////////////////////////////////////////////////////////////////////////////////////////////
+	/// </summary>
 
 private void PromptForContinuedAttack()
 {
@@ -457,13 +475,117 @@ private void OnAttackAgainSelected()
     // Show UI for selecting the next attacking and defending territories.
 }
 
+public Territory GetTerritoryByName(string name)
+{
+	if (gameBoard.Territories.ContainsKey(name))
+		return gameBoard.Territories[name];
+	return null;
+}
+
+// resolve attcak
+public void ResolveAttack(Territory attackingTerritory, Territory defendingTerritory)
+{
+    if (!IsValidAttack(attackingTerritory, defendingTerritory))
+    {
+        GD.Print("Invalid attack. The territories are not adjacent or the attacking territory does not have at least two armies.");
+        return;
+    }
+
+    // Announce attack
+    GD.Print($"{attackingTerritory.Owner.Name} is attacking {defendingTerritory.Name} from {attackingTerritory.Name}");
+
+    // Determine the number of dice
+    int attackerDiceCount = attackingTerritory.Owner.DecideNumberOfDiceToRoll(attackingTerritory);
+    int defenderDiceCount = defendingTerritory.Owner.DecideNumberOfDiceToRoll(defendingTerritory);
+
+    // Roll the dice
+    List<int> attackerDice = attackingTerritory.Owner.RollDice(attackerDiceCount).OrderByDescending(d => d).ToList();
+    List<int> defenderDice = defendingTerritory.Owner.RollDice(defenderDiceCount).OrderByDescending(d => d).ToList();
+
+    // Compare the dice and determine losses
+    int attackerLosses = 0, defenderLosses = 0;
+    int comparisons = Math.Min(attackerDice.Count, defenderDice.Count);
+    for (int i = 0; i < comparisons; i++)
+    {
+        if (attackerDice[i] > defenderDice[i])
+        {
+            defenderLosses++;
+        }
+        else
+        {
+            attackerLosses++; // Ties go to the defender
+        }
+    }
+
+    // Apply the results
+    attackingTerritory.Armies -= attackerLosses;
+    defendingTerritory.Armies -= defenderLosses;
+    
+    GD.Print($"Battle results: {attackingTerritory.Owner.Name} lost {attackerLosses} armies. {defendingTerritory.Owner.Name} lost {defenderLosses} armies.");
+
+    // If the territory is captured
+    if (defendingTerritory.Armies == 0)
+    {
+        CaptureTerritory(attackingTerritory, defendingTerritory, attackerDiceCount, attackerLosses);
+    }
+    else
+    {
+	    GD.Print($"{defendingTerritory.Owner.Name} successfully defended {defendingTerritory.Name}."); 
+    }
+
+    // Check if the attacker wants to continue
+    PromptForContinuedAttack();
+}
+
+private void PrintArmiesAfterAttack(Player attacker, Player defender)
+{
+	GD.Print($"{attacker.Name}'s armies:");
+	foreach (var territory in attacker.Territories)
+	{
+		GD.Print($"  - {territory.Name} has {territory.Armies} armies.");
+	}
+    
+	GD.Print($"{defender.Name}'s armies:");
+	foreach (var territory in defender.Territories)
+	{
+		GD.Print($"  - {territory.Name} has {territory.Armies} armies.");
+	}
+}
+
+// Add this method to the GameController class
+private void CaptureTerritory(Territory attackingTerritory, Territory defendingTerritory, int diceRolled, int attackerLosses)
+{
+    Player attacker = attackingTerritory.Owner;
+    Player defender = defendingTerritory.Owner;
+
+    defender.RemoveTerritory(defendingTerritory);
+    attacker.AddTerritory(defendingTerritory);
+    int armiesToMove = Math.Max(diceRolled, attackerLosses); // As per rules, move in at least as many armies as the number of dice rolled
+    attackingTerritory.Armies -= armiesToMove;
+    defendingTerritory.Armies = armiesToMove;
+
+    GD.Print($"{attacker.Name} has captured {defendingTerritory.Name} and moved {armiesToMove} armies.");
+    GD.Print($"{attackingTerritory.Owner.Name} captured {defendingTerritory.Name}.");
+    GD.Print($"{attackingTerritory.Name} now has {attackingTerritory.Armies} armies after moving {armiesToMove} armies to {defendingTerritory.Name}.");
+    GD.Print($"{defendingTerritory.Name} now has {defendingTerritory.Armies} armies.");
+}
+
+// Update this existing method in GameController to include additional attack logic
 private bool IsValidAttack(Territory attackingTerritory, Territory defendingTerritory)
 {
-	
-    // Implement logic to determine if the attack is valid
-    // For example, check if territories are adjacent and if the attacking territory has enough armies.
-    return true; // Placeholder return value
+    // Check adjacency and if the attacking territory has enough armies to attack
+    return gameBoard.AreTerritoriesAdjacent(attackingTerritory, defendingTerritory) && attackingTerritory.Armies > 1;
 }
+
+
+
+
+
+
+/// <summary>
+/// /////////////////////////////////////////////////////////////////END ATTACK////////////////////////////////////////////////////////////////////////////////////////////////////
+/// </summary>
+
 	
 public void endAttack()
 	{
